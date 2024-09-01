@@ -7,7 +7,12 @@ const routes: Routes = [
   {
     path: '',
     component: NuevousuarioPage
+  },
+  {
+    path: 'configuracioncuenta',
+    loadChildren: () => import('../configuracioncuenta/configuracioncuenta.module').then( m => m.ConfiguracioncuentaPageModule)
   }
+  
 ];
 
 @NgModule({

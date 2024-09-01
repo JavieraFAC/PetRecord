@@ -14,6 +14,10 @@ const routes: Routes = [
   {
     path: 'olvidocontrasena',
     loadChildren: () => import('./olvidocontrasena/olvidocontrasena.module').then( m => m.OlvidocontrasenaPageModule)
+  },
+  {
+    path: 'configuracioncuenta',
+    loadChildren: () => import('./configuracioncuenta/configuracioncuenta.module').then( m => m.ConfiguracioncuentaPageModule)
   }
 ];
 

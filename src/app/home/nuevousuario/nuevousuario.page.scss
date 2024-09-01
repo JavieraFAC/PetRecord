@@ -1,0 +1,45 @@
+ion-item{
+    --padding-start:0;
+    --inner-padding-end:0;
+    padding-left: 20px;
+    padding-right: 20px;
+    align-items: center;
+    
+    --background-color: aquamarine;
+
+}
+
+ion-input{
+  flex:1;
+}
+ion-icon{
+  cursor:pointer;
+  font-size:20px;
+}
+
+.ion-card{
+    padding-top: 5%;
+    padding-bottom: 5%;
+    padding-left: 5%;
+    padding-right: 5%;
+    background: rgba(255, 255, 255);
+    border-radius: 20px; 
+    text-align: center;
+  
+  }
+
+.fondo{
+    --background: linear-gradient(0deg, rgba(181,226,250,1) 0%, rgba(249,247,243,1) 70%);
+  }
+
+  ion-card-title{
+    font-family: system-ui;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: #F7A072 ;
+
+
+  }
+
+  
