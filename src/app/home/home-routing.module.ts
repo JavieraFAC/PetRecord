@@ -6,6 +6,14 @@ const routes: Routes = [
   {
     path: '',
     component: HomePage,
+  },
+  {
+    path: 'nuevousuario',
+    loadChildren: () => import('./nuevousuario/nuevousuario.module').then( m => m.NuevousuarioPageModule)
+  },
+  {
+    path: 'olvidocontrasena',
+    loadChildren: () => import('./olvidocontrasena/olvidocontrasena.module').then( m => m.OlvidocontrasenaPageModule)
   }
 ];
 

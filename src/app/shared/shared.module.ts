@@ -1,28 +1,25 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HeaderComponent } from './components/header/header.component';
-import { LogoComponent } from './components/logo/logo.component';
+import { HeaderComponent } from './header/header.component';
+import { CustomComponent } from './custom/custom.component';
+import { LogoComponent } from './logo/logo.component';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CustomInputComponent } from './components/custom-input/custom-input.component';
 
 
 
 @NgModule({
   declarations: [
     HeaderComponent,
-    LogoComponent,
-    CustomInputComponent,
-
+    CustomComponent,
+    LogoComponent
   ],
-  exports: [
+  exports:[
     HeaderComponent,
+    CustomComponent,
     LogoComponent,
-    CustomInputComponent,
-    ReactiveFormsModule,
-
-  ]
-  ,
+    ReactiveFormsModule
+  ],
   imports: [
     CommonModule,
     IonicModule,
