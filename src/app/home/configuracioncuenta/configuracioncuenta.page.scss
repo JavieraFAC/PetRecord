@@ -1,0 +1,56 @@
+ion-item{
+    padding-left: 20px;
+    padding-right: 20px;
+    align-items: center;
+    
+    --background-color: aquamarine;
+
+}
+
+.ion-card{
+    padding-top: 5%;
+    padding-bottom: 5%;
+    padding-left: 5%;
+    padding-right: 5%;
+    background: rgba(255, 255, 255);
+    border-radius: 20px; 
+    text-align: center;
+  
+  }
+
+.fondo{
+    --background: linear-gradient(0deg, rgba(181,226,250,1) 0%, rgba(249,247,243,1) 70%);
+  }
+
+  ion-card-title{
+    font-family: system-ui;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: #F7A072 ;
+
+
+  }
+
+
+  .custom-checkbox {
+    --background: #ffcc00; /* Cambia el color de fondo cuando no está seleccionado */
+    --background-checked: #0FA3B1  ; /* Cambia el color de fondo cuando está seleccionado */
+    --border-radius: 100%; /* Haz que el checkbox sea redondo */
+    --border-width: 2px; /* Cambia el grosor del borde */
+    --border-color: #F7A072; /* Cambia el color del borde */
+    --checkmark-color: #F9F7F3; /* Cambia el color de la marca de verificación */
+    --size: 20px; /* Ajusta el tamaño del checkbox */
+  }
+
+  .custom-item {
+    --background: #F9F7F3; /* Cambia el color de fondo del item */
+    --border-radius: 20px; /* Hace que las esquinas del item sean redondeadas */
+    --padding-start: 20px; /* Ajusta el espacio al inicio del item */
+    --padding-end: 20px; /* Ajusta el espacio al final del item */
+    --inner-padding: 40px; /* Ajusta el padding interno */
+    --box-shadow: 0px 0px 0px rgba(0, 0, 0, 0); /* Añade una sombra para dar un efecto de elevación */
+  
+    margin-bottom: 4px; /* Añade un espacio entre los items */
+  }
+  
