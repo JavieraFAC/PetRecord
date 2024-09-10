@@ -3,8 +3,25 @@
 <!-- HEADER DESDE SHARED -->
   
   <ion-content [fullscreen]="true">
-    <ion-button>
-      <ion-icon name="return-down-back-outline" ></ion-icon>
+    <!--Boton para volver-->
+    <ion-button shape="round" color="light" routerLink = ''>
+      <ion-icon slot="icon-only" name="arrow-back-outline" ></ion-icon>
     </ion-button>
+      <!--Boton para volver-->
+
+      <div class="content-center">
+
+
+      
+      <ion-card #card >
+        <ion-card-content>
+          <!-- Contenido de tu card -->
+          <h2>Recuperar contraseña</h2>
+        </ion-card-content>
+      </ion-card>
+
+    </div>
+
+
   </ion-content>
   
