@@ -1,0 +1,98 @@
+<!-- HEADER DESDE SHARED -->
+<app-header title="BIENVENIDO">
+</app-header>
+<!-- HEADER DESDE SHARED -->
+
+<ion-content class="fondo">
+  
+  <ion-grid [fixed]="true">
+
+
+<!-----PERFIL----->
+    <ion-card class="perfil-card">
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <!-- Columna para la imagen del perfil -->
+            <ion-col size="auto" class="img-perfil">
+              <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Foto de perfil" class="profile-img">
+            </ion-col>
+            
+            <!-- Columna para los datos del perfil -->
+            <ion-col size="auto" class="datos-medico">
+              <ion-card-title>---</ion-card-title>
+              <p>RUT: 00.000.000-0</p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+<!-----PERFIL----->
+    
+<ion-row>
+
+<!---TUTORES--->
+<ion-col size="6">
+  <ion-card (click)="tutores()" class="ion-card-importantes">
+    <ion-card-header>
+      <div>
+        <ion-icon name="paw-outline" class="icono"></ion-icon>
+        <ion-card-title>Tutores</ion-card-title>
+      </div>
+    </ion-card-header>
+    <ion-card-content>
+      Agrega tutores y sus mascotas
+    </ion-card-content>
+  </ion-card>
+</ion-col>
+<!---TUTORES--->
+<!--- CITAS--->
+      <ion-col size="6">
+        <ion-card (click)="citas()" class="ion-card-importantes">
+          <ion-card-header>
+            <div>
+              <ion-icon name="calendar-outline" class="icono"></ion-icon>
+              <ion-card-title>Citas</ion-card-title>
+            </div>
+          </ion-card-header>
+          <ion-card-content>
+            Aquí puedes gestionar tus citas.
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+<!--- CITAS--->
+<!---CONFIGURACION--->
+<ion-col size="6">
+  <ion-card routerLink = 'configuracioncuenta' class="ion-card-otros">
+    <ion-card-header>
+      <div>
+        <ion-icon name="settings-outline" class="icono2"></ion-icon>
+        <ion-card-title>Configuración</ion-card-title>
+      </div>
+    </ion-card-header>
+    <ion-card-content>
+      Modifica tuss datos laborales
+    </ion-card-content>
+  </ion-card>
+</ion-col>
+<!---CONFIGURACION--->
+<!----PERFIL--->
+<ion-col size="6">
+  <ion-card (click)="perfil()" class="ion-card-otros">
+    <ion-card-header>
+      <div >
+        <ion-icon name="finger-print-outline" class="icono2"></ion-icon>
+        <ion-card-title>Perfil</ion-card-title>
+      </div>
+    </ion-card-header>
+    <ion-card-content>
+      Modifica tus datos personales
+    </ion-card-content>
+  </ion-card>
+</ion-col>
+<!----PERFIL--->
+
+    </ion-row>
+  </ion-grid>
+  
+</ion-content>

@@ -1,0 +1,122 @@
+.fondo{
+    --background: linear-gradient(0deg, rgba(181,226,250,1) 0%, rgba(249,247,243,1) 70%);
+  }
+
+  .titulo{
+    padding-top: 20px;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  //  card datos medico
+  .perfil-card{
+    padding-top: 5%;
+    padding-bottom: 5%;
+    padding-left: 5%;
+    padding-right: 5%;
+    box-shadow: 0 1px 10px rgba(96, 96, 96, 0.274);
+    background: rgba(255, 255, 255, 70%);
+    border-radius: 20px; 
+  }
+  .img-perfil {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 10px;  /* espacio entre columnas */
+  }
+  .profile-img {
+    width: 70px;  /*tamaño imagen */
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .datos-medico {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 10px;  /* espacio entre columnas */
+  }
+ // 
+
+ .icono {
+  font-size: 50px; 
+  color: #F7A072;
+
+}
+
+.icono2 {
+  font-size: 40px; 
+  color: #0FA3B1 ;
+
+}
+
+  
+  .ion-card{
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-left: 5%;
+    padding-right: 5%;
+    box-shadow: 0 0px 0px;
+    background: rgba(255, 255, 255, 70%);
+    border-radius: 20px; 
+    text-align: center;
+    cursor: pointer;
+    margin-top: 0%;
+    margin-bottom: 0%;
+  
+  }
+
+  .ion-card-importantes{
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-left: 5%;
+    padding-right: 5%;
+    border: 1px solid white;
+    box-shadow: 0 0 0px;
+    background: #fff8ea;
+    border-radius: 20px; 
+    text-align: center;
+    cursor: pointer;
+    margin: 1%;
+    height: 250px;
+          /* Agregar Flexbox para centrar contenido */
+          display: flex;                
+          flex-direction: column;       
+          justify-content: center;       
+          align-items: center;   
+  
+  }
+  .ion-card-otros{
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-left: 5%;
+    padding-right: 5%;
+    border: 1px solid white;
+    box-shadow: 0 0 0px;
+    background: rgba(239, 239, 239, 0.7);
+    border-radius: 20px; 
+    text-align: center;
+    cursor: pointer;
+    margin: 1%;
+    height: 150px;
+          /* Agregar Flexbox para centrar contenido */
+          display: flex;                
+          flex-direction: column;       
+          justify-content: center;       
+          align-items: center;   
+  
+  }
+
+
+  ion-card-title {
+    font-size: 1.2em; /* Ajustar el tamaño del título si es necesario */
+    padding-top: 10px;
+    font-family: system-ui;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  
+  p {
+    margin: 0;
+    font-size: large;
+  }
+  

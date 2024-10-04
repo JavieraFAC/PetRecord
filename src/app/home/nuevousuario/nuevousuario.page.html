@@ -1,0 +1,166 @@
+
+<ion-content class="fondo">
+  <p style="text-align: center;">
+    Bienvenido! <br />Comencemos a crear tu cuenta en PetRecord
+  </p>
+
+    <!--Boton para volver-->
+    <ion-button shape="round" color="light" routerLink = ''>
+      <ion-icon slot="icon-only" name="arrow-back-outline" ></ion-icon>
+    </ion-button>
+      <!--Boton para volver-->
+
+  <!-- Tipo de cuenta -->
+  <ion-card class="ion-card">
+    <ion-card-header>
+      <ion-card-title>Tipo de cuenta</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-radio-group [(ngModel)]="tipoCuenta">
+        <ion-item>
+          <ion-radio value="Veterinario">Veterinario</ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-radio value="Tutor">Tutor</ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>Perfil seleccionado:</ion-label>
+          <ion-text>{{ tipoCuenta }}</ion-text>
+        </ion-item>
+      </ion-radio-group>
+    </ion-card-content>
+  </ion-card>
+
+
+  <!-- Sección solo visible para Veterinarios -->
+  <ng-container *ngIf="tipoCuenta === 'Veterinario'">
+  <!-- Datos personales -->
+      <ion-card class="ion-card">
+        <ion-card-header>
+          <ion-card-title>Datos personales</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-list>
+            <ion-item>
+              <ion-input label="Nombre" placeholder="Ingrese nombre" required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input label="Apellidos" placeholder="Ingrese apellidos"required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input label="Rut" type="number" placeholder="00.000.000-0" required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input label="Teléfono" type="number" placeholder="+569-99999999" required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input label="Correo" type="email" placeholder="ejemplo@petrecord.com" required></ion-input>
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+
+    <!-- Perfil profesional -->
+    <ion-card class="ion-card">
+      <ion-card-header>
+        <ion-card-title>PERFIL PROFESIONAL</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item>
+            <ion-input label="Universidad" placeholder="Ingrese universidad de egreso"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input label="Numero de registro" type="number" placeholder="000"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input label="Pais de registro" placeholder="Ingrese pais donde se otorgó"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input label="Especialidad" placeholder="Ingrese especialidad"></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Datos laborales -->
+    <ion-card class="ion-card">
+      <ion-card-header>
+        <ion-card-title>DATOS LABORALES</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <!-- Pregunta si atiende en consulta -->
+          <ion-item>
+            <ion-label>¿Atiendes en clínica?</ion-label>
+            <ion-toggle slot="end" [(ngModel)]="atiendeClinica" (ionChange)="toggleClinica()"></ion-toggle>
+          </ion-item>
+
+          <!-- Sección de direcciones, visible solo si atiende -->
+          <div *ngIf="atiendeClinica">
+            <ng-container *ngFor="let clinica of clinicas; let i = index">
+              <ion-item>
+                <ion-label>Clínica {{ i + 1 }}:</ion-label>
+                <ion-input placeholder="Ingrese nombre clínica"></ion-input>
+                <ion-icon name="trash-outline" slot="end" (click)="eliminarClinica(i)"></ion-icon>
+              </ion-item>
+            </ng-container>
+            <ion-button (click)="agregarClinica()">Agregar nueva clínica</ion-button>
+          </div>
+
+          <!-- Opción adicional para atender a domicilio o particular -->
+          <ion-item>
+            <ion-label>¿Atiendes a domicilio?</ion-label>
+            <ion-toggle slot="end" [(ngModel)]="atiendeParticular"></ion-toggle>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Imagenes -->
+    <ion-card class="ion-card">
+      <ion-card-header>
+        <ion-card-title>Imágenes</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label>Ingrese imagen de perfil</ion-label>
+          <ion-icon name="image-outline"></ion-icon>
+        </ion-item>
+        <ion-item>
+          <ion-label>Ingrese firma profesional</ion-label>
+          <ion-icon name="image-outline"></ion-icon>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+  <!-- Terminos y condiciones -->
+  <ion-checkbox style="padding: 20px;">
+    Estoy de acuerdo con <a href="#" (click)="showTermsPopover($event)">términos y condiciones</a>
+  </ion-checkbox>
+
+  <!-- Boton para continuar -->
+  <ion-button expand="block" shape="round" style="padding: 20px;" routerLink="configuracioncuenta">
+    Continuar
+  </ion-button>
+
+</ng-container>
+
+  <!-- Sección solo visible para tutor -->
+  <ng-container *ngIf="tipoCuenta === 'Tutor'">
+
+<ion-card class="ion-card">
+    <ion-item>
+      <ion-input label="Ingrese codigo invitación:" placeholder="Codigo"required></ion-input>
+    </ion-item>
+      <!-- Boton para continuar -->
+  <ion-button expand="block" shape="round" style="padding: 20px;">
+    Continuar
+  </ion-button>
+  
+</ion-card>
+
+
+
+  </ng-container>
+</ion-content>

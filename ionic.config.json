@@ -1,0 +1,7 @@
+{
+  "name": "Petrecord",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
