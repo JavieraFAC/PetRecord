@@ -4,9 +4,41 @@
 <!-- HEADER DESDE SHARED -->
 
 <ion-content class="fondo">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tutores</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <!-- Botón para mostrar el popover -->
+  <ion-button id="present-popover">Agregar tutor</ion-button>
+
+  <!-- Popover -->
+  <ion-popover trigger="present-popover" side="bottom" alignment="center">
+    <ng-template>
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title class="titulo">Agregar nuevo tutor</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-list>
+            <ion-item>
+              <ion-input [(ngModel)]="nuevoTutor.nombre" label="Nombre" placeholder="Ingrese nombre" required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input [(ngModel)]="nuevoTutor.apellidos" label="Apellidos" placeholder="Ingrese apellidos" required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input [(ngModel)]="nuevoTutor.rut" type="text" label="Rut" placeholder="00.000.000-0" required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input [(ngModel)]="nuevoTutor.direccion" type="text" label="Direccion" placeholder="av casa 12" required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input [(ngModel)]="nuevoTutor.telefono" type="number" label="Teléfono" placeholder="+569-99999999" required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input [(ngModel)]="nuevoTutor.correo" type="email" label="Correo" placeholder="ejemplo@correo.com" required></ion-input>
+            </ion-item>
+          </ion-list>
+
+          <ion-button expand="full" (click)="agregarTutor()">Agregar tutor</ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ng-template>
+  </ion-popover>
 </ion-content>

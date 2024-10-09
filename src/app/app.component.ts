@@ -12,6 +12,34 @@ import { Router } from '@angular/router';
 export class AppComponent {  
   constructor(private alertController: AlertController, private router: Router) {}
 
+  async showHelpAlert() {
+    const alert = await this.alertController.create({
+      header: 'Centro de Ayuda',
+      message: 'Para consultas, contáctanos por correo o WhatsApp.',
+      buttons: [
+        {
+          text: 'Enviar Correo',
+          handler: () => {
+            window.open('mailto:ja.alvarezc@duocuc.cl');
+          }
+        },
+        {
+          text: 'WhatsApp',
+          handler: () => {
+            window.open('https://wa.me/5491123966475');
+          }
+        },
+        {
+          text: 'Aceptar',
+          role: 'cancel'
+        }
+      ]
+    });
+
+
+    await alert.present();
+  }
+
 async presentAlert() {
     const alert = await this.alertController.create({
       header: '¿Estás seguro?',

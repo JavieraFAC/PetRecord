@@ -1,4 +1,26 @@
 .fondo{
     --background: linear-gradient(0deg, rgba(181,226,250,1) 0%, rgba(249,247,243,1) 70%);
   }
+
+
+  ion-popover {
+    --width: 90%;
+    --height: auto;
+    --padding-top: 5%;
+    --padding-bottom: 5%;
+    --padding-left: 5%;
+    --padding-right: 5%;
+    --border-radius: 20px; 
+    --text-align: center;
+  }
+  
+.titulo{
+    font-family: system-ui;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: #F7A072 ;
+
+
+  }
   

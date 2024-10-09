@@ -37,9 +37,10 @@
         </ion-menu-toggle>
 
         <ion-menu-toggle>
-          <ion-item routerLink="/ayudarlinea">
+          <ion-item (click)="showHelpAlert()" >
             <ion-icon name="help-circle-outline" slot="start"></ion-icon>
             <ion-label>Ayuda en Linea</ion-label>
+            
           </ion-item>
         </ion-menu-toggle>
 
