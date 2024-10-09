@@ -32,12 +32,32 @@
   .boton-editar {
     --background: transparent; 
     --color: #0FA3B1; 
+    --background-focused: transparent;
+    --background-activated: transparent; 
   }
   
   .boton-editar:hover {
+    --background: transparent; 
     --color: #F7A072; 
+  }
+
+  .boton-editar:active {
+    --background: transparent; 
+  }
+  .boton-editar:focus{
+    --background: transparent; 
   }
   
   .boton-editar ion-icon {
-    font-size: 35px; /* Cambia el tamaño del icono si es necesario */
+    font-size: 35px;
   }
+
+.lista-tutores{
+  padding-top: 5%;
+  padding-bottom: 5%;
+  padding-left: 1%;
+  padding-right: 1%;
+  box-shadow: 0 1px 10px rgba(96, 96, 96, 0.274);
+  background: rgba(255, 255, 255, 70%);
+  border-radius: 20px; 
+}

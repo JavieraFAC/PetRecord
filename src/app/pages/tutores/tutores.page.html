@@ -5,7 +5,10 @@
 
 <ion-content class="fondo">
   <!-- Botón para mostrar el popover -->
-  <ion-button id="present-popover">Nuevo tutor</ion-button>
+   <div class="alinearderecha" style="padding: 20px;">
+    <ion-button id="present-popover" class="boton-editar">Nuevo tutor <ion-icon style="font-size: 30px;" name="add-circle-outline"></ion-icon></ion-button>
+   </div>
+
 
   <!-- Popover -->
   <ion-popover trigger="present-popover" side="bottom" alignment="center">
@@ -42,7 +45,7 @@
     </ng-template>
   </ion-popover>
 
-  <ion-card>
+  <ion-card class="lista-tutores">
     <ion-card-title class="titulo">Lista de Tutores</ion-card-title>
     <ion-card-content>
       <ion-grid>
