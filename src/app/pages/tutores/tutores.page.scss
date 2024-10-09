@@ -16,11 +16,28 @@
   
 .titulo{
     font-family: system-ui;
+    font-size: medium;
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 4px;
     color: #F7A072 ;
-
-
   }
   
+  .alinearderecha{
+    display: flex;
+    justify-content: flex-end;
+  }
+
+
+  .boton-editar {
+    --background: transparent; 
+    --color: #0FA3B1; 
+  }
+  
+  .boton-editar:hover {
+    --color: #F7A072; 
+  }
+  
+  .boton-editar ion-icon {
+    font-size: 35px; /* Cambia el tamaño del icono si es necesario */
+  }

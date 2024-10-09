@@ -4,10 +4,12 @@ export interface Itutores {
     // como enviar coreos desde ionic
     // se puede usar firebase como bd solamente
     // mantener sesion iniciada con ionic
-    //nombre strNombre:
-    // run
-    //telefono intTelefono:
-    //direccion strDireccion:
-    //mascota
 
+
+    Nombre:string;
+    Apellidos:string;
+    Run:number;
+    Direccion:string;
+    Telefono:number;
+    Correo:string;
 }

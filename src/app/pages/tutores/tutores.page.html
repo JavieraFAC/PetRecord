@@ -5,7 +5,7 @@
 
 <ion-content class="fondo">
   <!-- Botón para mostrar el popover -->
-  <ion-button id="present-popover">Agregar tutor</ion-button>
+  <ion-button id="present-popover">Nuevo tutor</ion-button>
 
   <!-- Popover -->
   <ion-popover trigger="present-popover" side="bottom" alignment="center">
@@ -17,22 +17,22 @@
         <ion-card-content>
           <ion-list>
             <ion-item>
-              <ion-input [(ngModel)]="nuevoTutor.nombre" label="Nombre" placeholder="Ingrese nombre" required></ion-input>
+              <ion-input [(ngModel)]="nuevoTutor.Nombre" label="Nombre" placeholder="Nombre tutor *" required></ion-input>
             </ion-item>
             <ion-item>
-              <ion-input [(ngModel)]="nuevoTutor.apellidos" label="Apellidos" placeholder="Ingrese apellidos" required></ion-input>
+              <ion-input [(ngModel)]="nuevoTutor.Apellidos" label="Apellidos" placeholder="Apellido tutor *" required></ion-input>
             </ion-item>
             <ion-item>
-              <ion-input [(ngModel)]="nuevoTutor.rut" type="text" label="Rut" placeholder="00.000.000-0" required></ion-input>
+              <ion-input [(ngModel)]="nuevoTutor.Run" type="text" label="Rut" placeholder="12.345.678-9*" required></ion-input>
             </ion-item>
             <ion-item>
-              <ion-input [(ngModel)]="nuevoTutor.direccion" type="text" label="Direccion" placeholder="av casa 12" required></ion-input>
+              <ion-input [(ngModel)]="nuevoTutor.Direccion" type="text" label="Direccion" placeholder="direccion *" required></ion-input>
             </ion-item>
             <ion-item>
-              <ion-input [(ngModel)]="nuevoTutor.telefono" type="number" label="Teléfono" placeholder="+569-99999999" required></ion-input>
+              <ion-input [(ngModel)]="nuevoTutor.Telefono" type="number" label="WhatsApp" placeholder="+569-99999999 *" required></ion-input>
             </ion-item>
             <ion-item>
-              <ion-input [(ngModel)]="nuevoTutor.correo" type="email" label="Correo" placeholder="ejemplo@correo.com" required></ion-input>
+              <ion-input [(ngModel)]="nuevoTutor.Correo" type="email" label="Correo" placeholder="ejemplo@correo.com"></ion-input>
             </ion-item>
           </ion-list>
 
@@ -41,4 +41,29 @@
       </ion-card>
     </ng-template>
   </ion-popover>
+
+  <ion-card>
+    <ion-card-title class="titulo">Lista de Tutores</ion-card-title>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col><strong>Nombre</strong></ion-col>
+          <ion-col><strong>Teléfono</strong></ion-col>
+          <ion-col><strong>Dirección</strong></ion-col>
+          <ion-col><strong></strong></ion-col>
+        </ion-row>
+        <ion-row *ngFor="let tutor of tutores">
+          <ion-col>{{ tutor.Nombre }} {{ tutor.Apellidos }}</ion-col>
+          <ion-col>{{ tutor.Telefono }}</ion-col>
+          <ion-col>{{ tutor.Direccion }}</ion-col>
+          <ion-col class="alinearderecha">
+            <ion-button class="boton-editar" (click)="editarTutor(tutor)" ><ion-icon name="ellipsis-vertical-circle-outline"></ion-icon></ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+  
+  
+  
 </ion-content>
