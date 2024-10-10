@@ -2,6 +2,40 @@
     --background: linear-gradient(0deg, rgba(181,226,250,1) 0%, rgba(249,247,243,1) 70%);
   }
 
+  //  card datos 
+  .perfil-card{
+    padding-top: 5%;
+    padding-bottom: 5%;
+    padding-left: 5%;
+    padding-right: 5%;
+    box-shadow: 0 1px 10px rgba(96, 96, 96, 0.274);
+    background: rgba(255, 255, 255, 70%);
+    border-radius: 20px; 
+  }
+  .img-perfil {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 10px;  /* espacio entre columnas */
+  }
+  .profile-img {
+    width: 70px;  /*tamaño imagen */
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .datos-tutor {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 10px;  /* espacio entre columnas */
+  }
+ // 
+
+
+
+
+
 
   ion-popover {
     --width: 100%;

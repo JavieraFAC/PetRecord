@@ -55,6 +55,10 @@ const routes: Routes = [
     path: 'tutores',
     loadChildren: () => import('./pages/tutores/tutores.module').then( m => m.TutoresPageModule)
   },
+  {
+    path: 'mascotas',
+    loadChildren: () => import('./pages/mascotas/mascotas.module').then( m => m.MascotasPageModule)
+  },
 ];
 
 @NgModule({

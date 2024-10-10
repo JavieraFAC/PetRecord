@@ -1,3 +1,10 @@
+export interface IMascota {
+    Nombre: string;
+    Especie: string;
+    Raza: string;
+    Edad: number;
+  }
+
 export interface Itutores {
 
     // averiguar StorageModule y SQLite
@@ -12,4 +19,5 @@ export interface Itutores {
     Direccion:string;
     Telefono:number;
     Correo:string;
+    Mascotas: IMascota[];
 }

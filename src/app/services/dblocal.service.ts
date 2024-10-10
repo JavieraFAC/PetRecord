@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
-import { Citas } from '../interfaces/citas';
+
 import { Itutores } from '../interfaces/Itutores';
 import { ToastController } from '@ionic/angular';
 
@@ -40,12 +40,14 @@ export class DblocalService {
         Run: run,
         Direccion: direccion,
         Telefono: telefono,
-        Correo: correo
+        Correo: correo,
+        Mascotas: []
       });
   
       // Guardar en almacenamiento local
       this._storage?.set('tutores', this.tutores);
-      this.presentToast("Tutor agregado");
+      const mensajeAgregado = `El tutor ha sido agregado`;
+      this.presentToast(mensajeAgregado);
     } else {
       const mensajeExiste = `El tutor ${existe.Nombre} ya existe con el (RUN: ${existe.Run})`;
       this.presentToast(mensajeExiste);
@@ -66,4 +68,14 @@ export class DblocalService {
     return this.tutores;
   }
 
+// -----------------------MASCOTAS-----------------------
+
+guardarMascota(){
+
 }
+
+  
+}
+
+
+

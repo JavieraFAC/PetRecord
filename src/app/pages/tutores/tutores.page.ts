@@ -16,7 +16,8 @@ export class TutoresPage implements OnInit {
     Run: 0,
     Direccion: '',
     Telefono: 0,
-    Correo: ''
+    Correo: '',
+    Mascotas: []
   };
 
   constructor(private dblocalService: DblocalService) {}
@@ -49,7 +50,8 @@ export class TutoresPage implements OnInit {
         Run: 0,
         Direccion: '',
         Telefono: 0,
-        Correo: ''
+        Correo: '',
+        Mascotas: [],
       };
 
       // Refrescar la lista de tutores desde la base de datos
@@ -58,9 +60,9 @@ export class TutoresPage implements OnInit {
       alert('Por favor, complete los campos obligatorios');
     }
   }
-
-  editarTutor(tutor: Itutores) {
-    console.log('Editar tutor:', tutor);
+//
+//  editarTutor(tutor: Itutores) {
+//    console.log('Editar tutor:', tutor);
     // abrir un modal o redirigir a otra página con el formulario de edición
-  }
+//  }
 }
