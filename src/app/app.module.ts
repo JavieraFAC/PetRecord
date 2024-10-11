@@ -13,10 +13,13 @@ import { FormsModule } from '@angular/forms';
 import { TerminospopoverComponent } from './home/nuevousuario/terminospopover/terminospopover.component';
 import { IonicStorageModule } from '@ionic/storage-angular';
 
+import { SQLite } from '@ionic-native/sqlite/ngx';
+
+
 @NgModule({
   declarations: [AppComponent, TerminospopoverComponent],
   imports: [BrowserModule,BrowserAnimationsModule, IonicModule.forRoot(), AppRoutingModule, FormsModule, IonicStorageModule.forRoot()],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy},SQLite],
   bootstrap: [AppComponent],
   
 })

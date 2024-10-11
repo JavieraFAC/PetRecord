@@ -9,6 +9,9 @@ import { ToastController } from '@ionic/angular';
 })
 export class DblocalService {
 
+
+
+  // tutores que agrega el veterinario
   tutores: Itutores[] = [];
   private _storage: Storage | null=null;
 
@@ -53,7 +56,19 @@ export class DblocalService {
       this.presentToast(mensajeExiste);
     }
   }
+  
+  async borrarTutor(run: number){
+const existe = this.tutores.find(c => c.Run === run);
+if (existe){
+  this.tutores=this.tutores.filter(c=> c.Run !== run);
+  this._storage?.set('tutor',this.tutores);
+  this.presentToast("Se ha eliminado el tutor");
+}else{
+  this.presentToast("El Run es invalido")
+}
+  }
 
+// ------ mensaje por pantalla 
   async presentToast(mensaje:string) {
     const toast = await this.toastController.create({
       message: mensaje,
