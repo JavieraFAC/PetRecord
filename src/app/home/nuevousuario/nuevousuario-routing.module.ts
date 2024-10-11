@@ -15,7 +15,13 @@ const routes: Routes = [
   {
     path:'cero',
     loadChildren:() => import('../page0/page0.module').then(m => m.Page0PageModule)
+  },
+  {
+    path:'perfilVeterinario',
+    loadChildren:() => import('../../pages/casa/casa.module').then(m => m.CasaPageModule)
   }
+
+
 ]
 
 @NgModule({

@@ -83,7 +83,7 @@ export class NuevousuarioPage implements OnInit {
   registrarVeterinario() {
     if (this.tipoCuenta === 'Veterinario') { 
       // Validar si todos los campos requeridos están llenos
-      if (!this.Vnombre || !this.Vapellidos || !this.Vrun || !this.Vtelefono || !this.Vcorreo || !this.Vuniversidad || !this.VnumeroRegistro || !this.VpaisRegistro || !this.Vespecialidad) {
+      if (!this.Vnombre || !this.Vapellidos || !this.Vrun || !this.Vtelefono || !this.Vcorreo ) {
         alert('Por favor, complete los campos obligatorios');
         return;
       }
