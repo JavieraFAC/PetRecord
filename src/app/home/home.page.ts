@@ -45,11 +45,13 @@ export class HomePage implements OnInit {
     if (this.authService.login(email, password)) {
       const toast = await this.toastController.create({
         message: 'Inicio de sesión exitoso',
+        position: 'middle',
         duration: 2000,
         color: 'success',
       });
-
       toast.present();
+
+      // redirigir al perfil 'casa'
       this.router.navigate(['/casa']);
     } else {
       const toast = await this.toastController.create({
