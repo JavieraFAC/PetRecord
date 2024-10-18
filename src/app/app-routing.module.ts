@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from 'src/guards/auth.guard';
+import { NoFoundComponent } from './shared/no-found/no-found.component';
 
 const routes: Routes = [
   {
@@ -67,9 +68,8 @@ const routes: Routes = [
     canActivate: [AuthGuard], // Ruta protegida
   },
  {
-  path: '**', // ruta desconocida
-  redirectTo: 'home',
-  pathMatch: 'full',
+  path: '**', // ruta desconocida redirige a componente no-found
+  component: NoFoundComponent,
  }
 ];
 
