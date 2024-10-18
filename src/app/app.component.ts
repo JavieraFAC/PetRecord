@@ -10,7 +10,12 @@ import { Router } from '@angular/router';
 })
 
 export class AppComponent {  
-  constructor(private alertController: AlertController, private router: Router) {}
+
+  constructor(private alertController: AlertController, private router: Router) {
+
+    document.body.classList.remove('dark'); // Asegura que no se use tema oscuro
+ 
+  }
 
   async showHelpAlert() {
     const alert = await this.alertController.create({
@@ -26,7 +31,7 @@ export class AppComponent {
         {
           text: 'WhatsApp',
           handler: () => {
-            window.open('https://wa.me/5491123966475');
+            window.open('https://wa.me/56984048112');
           }
         },
         {
@@ -43,7 +48,7 @@ export class AppComponent {
 async presentAlert() {
     const alert = await this.alertController.create({
       header: '¿Estás seguro?',
-      message: '¿Quieres al cerrado sesion?',
+      message: 'Saldrás de tu perfil',
       buttons: [
         {
           text: 'No',

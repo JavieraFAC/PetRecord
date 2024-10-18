@@ -42,19 +42,25 @@
         <ion-card-content>
           <ion-list>
             <ion-item>
-              <ion-input [(ngModel)]="Vnombre" label="Nombre" placeholder="Ingrese nombre" required></ion-input>
+              <ion-input [(ngModel)]="Vnombre" label="Nombre" placeholder="Ingrese nombre" ></ion-input>
             </ion-item>
             <ion-item>
-              <ion-input [(ngModel)]="Vapellidos" label="Apellidos" placeholder="Ingrese apellidos"required></ion-input>
+              <ion-input [(ngModel)]="Vapellidos" label="Apellidos" placeholder="Ingrese apellidos"></ion-input>
             </ion-item>
             <ion-item>
-              <ion-input [(ngModel)]="Vrun" label="Rut" type="number" placeholder="00.000.000-0" required></ion-input>
+              <ion-input [(ngModel)]="Vrun" label="Rut" type="number" placeholder="00.000.000-0"></ion-input>
             </ion-item>
             <ion-item>
-              <ion-input [(ngModel)]="Vtelefono" label="Teléfono" type="number" placeholder="+569-99999999" required></ion-input>
+              <ion-input [(ngModel)]="Vtelefono" label="Teléfono" type="number" placeholder="+569-99999999" ></ion-input>
             </ion-item>
             <ion-item>
-              <ion-input [(ngModel)]="Vcorreo" label="Correo" type="email" placeholder="ejemplo@petrecord.com" required></ion-input>
+              <ion-input [(ngModel)]="Vcorreo" label="Correo" type="email" placeholder="ejemplo@petrecord.com" ></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input [(ngModel)]="Vpassword" label="Contraseña" type="password" placeholder ="**********" ></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input   [(ngModel)]="VconfirmPassword" label="Repite contraseña" type="password" placeholder="**********"></ion-input>
             </ion-item>
           </ion-list>
         </ion-card-content>
@@ -133,16 +139,21 @@
           <ion-icon name="cloud-upload-outline" slot="end" (click)="fileInputFirma.click()"></ion-icon>
           <input type="file" #fileInputFirma hidden (change)="onFileChange($event, 'firma')" />
         </ion-item>
+        
       </ion-card-content>
     </ion-card>
 
   <!-- Terminos y condiciones -->
-  <ion-checkbox [(ngModel)]="VaceptoTerminos" style="padding: 20px;">
-    Estoy de acuerdo con <a href="#" (click)="showTermsPopover($event)">términos y condiciones</a>
-  </ion-checkbox>
+  <ion-item lines="none" class="terminos-condiciones">
+    <ion-checkbox slot="start" [(ngModel)]="VaceptoTerminos"  aria-labelledby="checkbox-label" aria-required="true"> </ion-checkbox>
+    <ion-label id="checkbox-label"> Estoy de acuerdo con  <a (click)="showTermsPopover($event)">términos y condiciones</a>
+    </ion-label>
+  </ion-item>
+  
+  
 
   <!-- Boton para continuar -->
-  <ion-button expand="block" shape="round" style="padding: 20px;" (click)="registrarVeterinario()" [disabled]="!VaceptoTerminos" routerLink="perfilVeterinario" routerLinkActive="router-link-active" >
+  <ion-button expand="block" shape="round" style="padding: 20px;" (click)="registrarVeterinario()">
     Continuar
   </ion-button>
 

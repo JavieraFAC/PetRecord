@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PopoverController, ToastController } from '@ionic/angular';
 import { TerminospopoverComponent } from './terminospopover/terminospopover.component';
 import { Router, NavigationExtras } from '@angular/router';
+import { DBloginService } from 'src/app/services/dblogin.service';
 
 
 @Component({
@@ -11,7 +12,7 @@ import { Router, NavigationExtras } from '@angular/router';
 })
 export class NuevousuarioPage implements OnInit {
   
-  tipoCuenta: string = ''; // Variable para almacenar la opción de tipo de cuenta
+  tipoCuenta: string = ''; // tipo de cuenta
   VatiendeClinica: boolean = false; // Almacena si atiende en consulta
   Vclinicas: string[] = []; // Almacena las clínicas
   VatiendeParticular: boolean = false;
@@ -22,6 +23,8 @@ export class NuevousuarioPage implements OnInit {
   Vrun: string = '';
   Vtelefono: string = '';
   Vcorreo: string = '';
+  Vpassword: string = '';
+  VconfirmPassword: string = '';
   
   // Perfil profesional
   Vuniversidad: string = '';
@@ -33,10 +36,13 @@ export class NuevousuarioPage implements OnInit {
   VaceptoTerminos: boolean = false;
 
   // Imágenes
-  VperfilImagen: File | null = null;  // Para almacenar la imagen de perfil
-  VfirmaImagen: File | null = null;    // Para almacenar la firma
+  VperfilImagen: File | null = null;  // imagen de perfil
+  VfirmaImagen: File | null = null;    // firma
 
-  constructor(private popoverController: PopoverController, private router: Router, toastController:ToastController) { }
+  constructor(private popoverController: PopoverController, 
+              private router: Router, 
+              private toastController:ToastController,
+              private DBloginService: DBloginService) { }
 
   // Método que se llama cuando se cambia el estado del toggle
   toggleClinica() {
@@ -55,6 +61,7 @@ export class NuevousuarioPage implements OnInit {
     this.Vclinicas.splice(index, 1); // Elimina la clínica en el índice especificado
   }
 
+  // carga de imagenes
   onFileChange(event: Event, type: 'perfil' | 'firma') {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
@@ -71,45 +78,85 @@ export class NuevousuarioPage implements OnInit {
   async showTermsPopover(event: Event) {
     const popover = await this.popoverController.create({
       component: TerminospopoverComponent,
-      event,  // Usar el evento para posicionar el popover cerca del clic
+      event, 
       translucent: true,
       cssClass: 'full-screen-popover' 
     });
     await popover.present();
   }
 
-  // --------------------- NUEVO VETERINARIO
-
-  registrarVeterinario() {
-    if (this.tipoCuenta === 'Veterinario') { 
-      // Validar si todos los campos requeridos están llenos
-      if (!this.Vnombre || !this.Vapellidos || !this.Vrun || !this.Vtelefono || !this.Vcorreo ) {
-        alert('Por favor, complete los campos obligatorios');
-        return;
-      }
+    // Método para mostrar toast
+    async mostrarToast(mensaje: string, color: string = 'danger') {
+      const toast = await this.toastController.create({
+        message: mensaje,
+        position: 'middle',
+        duration: 3000,
+        color: color
+      });
+      toast.present();
     }
 
-    const datosVeterinario = {
-      tipoCuenta: this.tipoCuenta,
-      nombre: this.Vnombre,
-      apellidos: this.Vapellidos,
-      rut: this.Vrun,
-      telefono: this.Vtelefono,
-      correo: this.Vcorreo,
-      universidad: this.Vuniversidad,
-      numeroRegistro: this.VnumeroRegistro,
-      paisRegistro: this.VpaisRegistro,
-      especialidad: this.Vespecialidad,
-      clinicas: this.Vclinicas,
-      atiendeClinica: this.VatiendeClinica,
-      atiendeParticular: this.VatiendeParticular
-    };
+  // --------------------- NUEVO VETERINARIO
 
 
+  registrarVeterinario() {
+
+    if (this.tipoCuenta === 'Veterinario') {
+      // Almacenar mensajes de error si los campos están vacíos
+      let mensajesErrores: string[] = [];
+      if (!this.Vnombre) mensajesErrores.push('Nombre');
+      if (!this.Vapellidos) mensajesErrores.push('Apellidos');
+      if (!this.Vrun) mensajesErrores.push('RUN');
+      if (!this.Vtelefono) mensajesErrores.push('Teléfono');
+      if (!this.Vcorreo) mensajesErrores.push('Correo electrónico');
+      if (!this.Vpassword) mensajesErrores.push('Contraseña');
+      if (this.Vpassword !== this.VconfirmPassword) {
+        mensajesErrores.push('Las contraseñas no coinciden');
+      }
+          // Validar aceptar terminos y condiciones
+        if (!this.VaceptoTerminos) {
+          mensajesErrores.push('Debe aceptar los términos y condiciones');
+        }
+
+      // Si hay errores, mostrar el mensaje y retornar
+      if (mensajesErrores.length > 0) {
+        const mensaje = `Por favor, complete los siguientes campos obligatorios: ${mensajesErrores.join(', ')}`;
+        this.mostrarToast(mensaje, 'danger');
+        return;
+      }
+
+        const datosVeterinario = {
+          tipoCuenta: this.tipoCuenta,
+          nombre: this.Vnombre,
+          apellidos: this.Vapellidos,
+          rut: this.Vrun,
+          telefono: this.Vtelefono,
+          correo: this.Vcorreo,
+          password: this.Vpassword,
+          universidad: this.Vuniversidad,
+          numeroRegistro: this.VnumeroRegistro,
+          paisRegistro: this.VpaisRegistro,
+          especialidad: this.Vespecialidad,
+          clinicas: this.Vclinicas,
+          atiendeClinica: this.VatiendeClinica,
+          atiendeParticular: this.VatiendeParticular
+        };
+
+
+    // Registrar el usuario usando el DBLoginService
+    const registroExitoso = this.DBloginService.registrarUsuario(datosVeterinario);
+
+    if (registroExitoso) {
+      this.mostrarToast('Veterinario registrado con éxito', 'success');
+      this.router.navigate(['/casa']); 
+    } else {
+      this.mostrarToast('El correo ya está registrado', 'danger');
+    }
   }
+}
 
 
   ngOnInit() {
     // Aquí puedes inicializar datos si es necesario
   }
-}
+  }

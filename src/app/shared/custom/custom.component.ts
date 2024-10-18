@@ -10,28 +10,31 @@ export class CustomComponent  implements OnInit {
 
 
   @Input() control!: FormControl;
-  @Input() type!: string;
-  @Input() label!: string;
-  @Input() autocomplete!: string;
-  @Input() icon!: string;
-  
-  isPassw!: boolean;
+  @Input() type: string = 'text';
+  @Input() label: string = '';
+  @Input() autocomplete: string = 'off';
+  @Input() icon: string = '';
+
+  isPassw: boolean = false;
   hide: boolean = true;
+
 
   constructor() { }
 
   ngOnInit() {
+    // Verificación de seguridad por si no se pasa el control como FormControl
+    if (!(this.control instanceof FormControl)) {
+      throw new Error('El control proporcionado no es un FormControl válido.');
+    }
 
-    if (this.type == 'password') this.isPassw = true;
+    // Determinar si el campo es una contraseña
+    if (this.type === 'password') this.isPassw = true;
   }
 
-
-  showOrHidePassw(){
-
+  // Alternar visibilidad de la contraseña
+  showOrHidePassw() {
     this.hide = !this.hide;
-
-    if (this.hide) this.type = 'password';
-    else this.type = 'text';
+    this.type = this.hide ? 'password' : 'text';
   }
 
 }
