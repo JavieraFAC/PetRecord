@@ -20,8 +20,8 @@
             
             <!-- Columna para los datos del perfil -->
             <ion-col size="auto" class="datos-medico">
-              <ion-card-title>---</ion-card-title>
-              <p>RUT: 00.000.000-0</p>
+              <ion-card-title>{{ usuarioNombre ? usuarioNombre : 'Usuario' }}</ion-card-title>
+              <p>RUN: {{usuarioRun}}</p>
             </ion-col>
           </ion-row>
         </ion-grid>

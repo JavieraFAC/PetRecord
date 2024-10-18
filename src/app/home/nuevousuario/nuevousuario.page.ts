@@ -147,6 +147,9 @@ export class NuevousuarioPage implements OnInit {
     const registroExitoso = this.DBloginService.registrarUsuario(datosVeterinario);
 
     if (registroExitoso) {
+
+        localStorage.setItem('usuarioNombre', this.Vnombre); // Guarda el nombre
+        localStorage.setItem('usuarioRun', this.Vrun); // Guarda el RUN
       this.mostrarToast('Veterinario registrado con éxito', 'success');
       this.router.navigate(['/casa']); 
     } else {
