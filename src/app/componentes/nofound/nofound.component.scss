@@ -1,0 +1,44 @@
+.not-found-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+  
+    background-image: url('/assets/404error.jpg');
+  
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    z-index: -1; 
+  }
+  
+  .not-found-content {
+    position: relative;
+    text-align: center;
+    color: white;
+    top: 55%;
+    padding: 20px;
+  }
+  
+  ion-button {
+    --background: #F7A072; 
+    --color: white; 
+    --border-radius: 20px; 
+    --padding: 12px 24px; 
+    --box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.3); 
+    
+  
+    /* Cambios al pasar el mouse */
+    &:hover {
+      --background: #B5E2FA; 
+      --color: #F7A072; 
+    }
+  
+    /* Cambios al hacer clic */
+    &:active {
+      --background: #0FA3B1; 
+      --color: #ffffff;
+    }
+  }
+  

@@ -1,0 +1,16 @@
+.full-image {
+    width: 50%; /* Ajusta el tamaño según sea necesario */
+    height: auto; /* Mantiene la proporción de aspecto */
+    padding: 20px;
+  }
+
+  /* Animación zoom */
+@keyframes zoomInOut {
+  0% { transform: scale(1); }   /* Tamaño normal */
+  50% { transform: scale(1.2); } /* Zoom máximo */
+  100% { transform: scale(1); }  /* Vuelve al tamaño normal */
+}
+
+.zoom-animation {
+  animation: zoomInOut 3s infinite ease-in-out; /* Animación infinita */
+}

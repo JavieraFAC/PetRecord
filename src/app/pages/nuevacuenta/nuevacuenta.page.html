@@ -1,0 +1,163 @@
+
+<app-header backButton="/login" title="Nueva cuenta"></app-header>
+
+<ion-content class="fondo">
+  <!-------SALUDO------>
+  <p style="text-align: center;"> Bienvenido! <br />Comencemos a crear tu cuenta en PetRecord</p>
+  <!-------SALUDO------>
+
+
+<!---------------------------------------------------------->
+<!------------------- TIPO DE CUENTA  ---------------------->
+  <ion-card class="ion-card">
+    <ion-card-header>
+      <h2>Tipo de cuenta</h2>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-radio-group [(ngModel)]="tipoCuenta">
+        <ion-item>
+          <ion-radio value="Veterinario">Veterinario</ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-radio value="Tutor">Tutor</ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>Perfil seleccionado:</ion-label>
+          <ion-text>{{ tipoCuenta }}</ion-text>
+        </ion-item>
+      </ion-radio-group>
+    </ion-card-content>
+  </ion-card> 
+
+<ng-container *ngIf="tipoCuenta === 'Veterinario'">  
+<!---------------------------------------------------------->
+<!----------------------PERFIL PERSONAL----------------------> 
+ <!-- Datos personales -->
+ <ion-card class="ion-card">
+  <ion-card-header>
+    <h2>Datos personales</h2>
+  </ion-card-header>
+
+        <form [formGroup]="form" (ngSubmit)="submit()" (keypress.enter)="submit()">
+<!---------------NOMBRE------------------->
+            <app-formulario
+              [control]="form.controls.nombre"
+              autocomplete="nombre"
+              type="text"
+              label="Nombre"
+            ></app-formulario>
+          
+                  <div class="validators" *ngIf="form.controls.nombre.errors && form.controls.nombre.touched">
+                    <div *ngIf="form.controls.nombre.errors?.['required']">Debes ingresar tú nombre</div>
+                    <div *ngIf="form.controls.nombre.errors?.['minlenght']">Ingresa un nombre válido</div>
+                  </div>
+<!---------------APELLIDOS------------------->
+            <app-formulario
+              [control]="form.controls.apellidos"
+              autocomplete="apellidos"
+              type="text"
+              label="Apellidos"
+            ></app-formulario>
+
+                  <div class="validators" *ngIf="form.controls.apellidos.errors && form.controls.apellidos.touched">
+                    <div *ngIf="form.controls.apellidos.errors?.['required']">Debes ingresar tús apellidos</div>
+                    <div *ngIf="form.controls.apellidos.errors?.['minlenght']">Ingresa apellidos válidos</div>
+                  </div>
+
+
+<!---------------RUN------------------->
+            <app-formulario
+              [control]="form.controls.run"
+              autocomplete="run"
+              type="text"
+              label="RUN"
+            ></app-formulario>
+
+                <div class="validators" *ngIf="form.controls.run.errors && form.controls.run.touched">
+                  <div *ngIf="form.controls.run.errors?.['invalidRut']">RUT inválido. Verifica el formato y los dígitos.</div>
+                </div>
+<!---------------CORREO------------------->
+            <app-formulario
+              [control]="form.controls.email"
+              autocomplete="email"
+              type="email"
+              label="Correo electrónico"
+            ></app-formulario>
+
+                <div class="validators" *ngIf="form.controls.email.errors && form.controls.email.touched">
+                  <div *ngIf="form.controls.email.errors?.['required']">Debes ingresar correo electrónico</div>
+                  <div *ngIf="form.controls.email.errors?.['email']">Ingresa un correo válido</div>
+                </div>
+<!---------------TELEFONO--------------------->
+            <app-formulario
+                [control]="form.controls.telefono"
+                autocomplete="tel"
+                type="tel"
+                label="Teléfono"
+            ></app-formulario>
+
+            <div class="validators" *ngIf="form.controls.telefono.errors && form.controls.telefono.touched">
+              <div *ngIf="form.controls.telefono.errors?.['required']">El teléfono es requerido.</div>
+              <div *ngIf="form.controls.telefono.errors?.['pattern']">El teléfono debe contener solo números.</div>
+            </div>
+
+<!---------------CONTRASEÑA------------------->
+        <app-formulario
+          [control]="form.controls.password"
+          type="password"
+          label="Contraseña"
+        ></app-formulario>
+      
+              <div class="validators" *ngIf="form.controls.password.errors && form.controls.password.touched">
+              <div *ngIf="form.controls.password.errors?.['required']">La contraseña es obligatoria</div>
+              </div>
+
+<!---------------CONTRASEÑA------------------->
+        <app-formulario
+          [control]="form.controls.confpassword"
+          type="password"
+          label="Confirmar Contraseña"
+        ></app-formulario>
+            <div class="validators" *ngIf="form.controls.confpassword.errors && form.controls.confpassword.touched">
+            <div *ngIf="form.controls.confpassword.errors?.['required']">Debes confirmar la contraseña</div>
+            <div *ngIf="form.hasError('mismatch')">Las contraseñas no coinciden</div>
+            </div>
+
+<!------------------------------------------->
+ 
+        <ion-item lines="none" class="terminos-condiciones">
+          <ion-checkbox slot="start" formControlName="aceptaTerminos" aria-labelledby="checkbox-label" aria-required="true"></ion-checkbox>
+          <ion-label id="checkbox-label"> Estoy de acuerdo con <a (click)="showTermsPopover($event)">términos y condiciones</a></ion-label>
+        </ion-item>
+
+        <ion-button type="submit" expand="block" shape="round" style="padding: 20px;" [disabled]="form.invalid || !form.controls.aceptaTerminos.value">
+          Continuar
+        </ion-button>
+        <pre>{{ form.value | json }}</pre>
+    </form>
+  </ion-card>
+</ng-container>
+
+
+
+<!---------------------------------------------------------->
+<!---------------------------------------------------------->
+<!-------------------------PARA TUTOR ----------------------->
+<ng-container *ngIf="tipoCuenta === 'Tutor'">
+
+    <ion-card class="ion-card">
+        <ion-item>
+          <ion-label position="stacked">Ingrese código de invitación:</ion-label>
+          <ion-input type="text" placeholder="**********" required></ion-input>
+        </ion-item>
+      <ion-button expand="block" shape="round" style="padding: 20px;">
+        Continuar
+      </ion-button>
+    </ion-card>
+<!---------------------------------------------------------->
+
+
+</ng-container>
+
+
+</ion-content>
