@@ -4,6 +4,9 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { getFirestore, setDoc, doc, getDoc} from '@angular/fire/firestore';
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile} from 'firebase/auth';
 import { Usuario } from '../models/usuario.model';
+import { CargandoService } from './cargando.service';
+import { BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +15,25 @@ export class FirebaseService {
 
   auth = inject(AngularFireAuth);
   firestore = inject(AngularFirestore);
+  cargandoS = inject(CargandoService);
 
+
+
+      // Observable para el estado de autenticación
+      isAuthenticated$ = new BehaviorSubject<boolean>(false);
+      
+      constructor(private router: Router) {
+        // Actualiza el observable isAuthenticated$ cuando cambia el estado de autenticación
+        this.auth.authState.subscribe(user => {
+          this.isAuthenticated$.next(!!user);
+        });
+      }
+
+
+  //--- Autenticación de usuario
+getAuth(){
+  return getAuth();
+}
 
   // Autenticación de usuario veterinario en login
   signIn(usuario: Usuario){
@@ -39,6 +60,13 @@ export class FirebaseService {
 // obtener datos
 async getDocument(path:string){
   return (await getDoc(doc(getFirestore(),path))).data();
+}
+
+// cerrar sesion
+signOut(){
+  getAuth().signOut();
+  localStorage.removeItem('user');
+  this.cargandoS.routerLink('/login');
 }
 
 }

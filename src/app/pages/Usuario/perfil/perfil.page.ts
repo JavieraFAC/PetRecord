@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { CargandoService } from 'src/app/servicios/cargando.service';
+import { FirebaseService } from 'src/app/servicios/firebase.service';
 
 @Component({
   selector: 'app-perfil',
@@ -7,7 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PerfilPage implements OnInit {
 
-  constructor() { }
+  fireBS = inject(FirebaseService);
+  cargandoS = inject(CargandoService);
 
   ngOnInit() {
   }

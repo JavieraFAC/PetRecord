@@ -1,8 +1,8 @@
 import { Injectable, inject } from '@angular/core';
 import { CanActivate, CanActivateFn, ActivatedRouteSnapshot,RouterStateSnapshot,UrlTree, GuardResult, MaybeAsync} from '@angular/router';
 import { Observable } from 'rxjs';
-import { FirebaseService } from 'src/services/firebase.service';
-import { CargandoService } from 'src/services/cargando/cargando.service';
+import { FirebaseService } from '../servicios/firebase.service';
+import { CargandoService } from '../servicios/cargando.service';
 
 
 @Injectable({
@@ -11,7 +11,7 @@ import { CargandoService } from 'src/services/cargando/cargando.service';
 
 export class authGuard implements CanActivate {
 
-  firebaseS = inject(FirebaseService);
+  fireBS = inject(FirebaseService);
   cargandoS = inject(CargandoService);
 
   canActivate(
@@ -23,7 +23,7 @@ export class authGuard implements CanActivate {
 
     return  new Promise((resolve) =>{
 
-            this.firebaseS.getAuth().onAuthStateChanged((auth) => {
+            this.fireBS.getAuth().onAuthStateChanged((auth) => {
 
               if(auth){
                 if(user) resolve(true);

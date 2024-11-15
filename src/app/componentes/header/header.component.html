@@ -8,7 +8,7 @@
     </ion-buttons>
 
     <ion-buttons slot="start">
-      <ion-menu-button menu="main-menu"></ion-menu-button>
+      <ion-menu-button *ngIf="isAuthenticated" menu="main-menu"></ion-menu-button>
     </ion-buttons>
     <ion-title>{{title}}</ion-title>
   </ion-toolbar>
