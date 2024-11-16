@@ -1,6 +1,44 @@
-<app-header title="Configuraciones"></app-header>
-
-
+<app-header  backButton="/perfil" title="Configuraciones"></app-header>
 <ion-content>
+
+
+<!-------------------------------------------------------->
+<ion-card class="ion-card" style="text-align: center;">
+    <form [formGroup]="form">      
+        <ion-avatar class="imagenPerfil" *ngIf="form.value.imagenPerfil"> <img [src]="form.value.imagenPerfil" /> </ion-avatar>
+        <ion-icon class="icono" *ngIf="!form.value.imagenPerfil" name="image-outline"> </ion-icon>
+       <br>
+        <ion-button (click)="tomarImagen()" shape="round">
+          Imagen de perfil
+        </ion-button>
+  </form>   
+  </ion-card>
+
+<ion-card class="ion-card" style="text-align: center;">
+ <h2>Datos personales</h2>
+ <p>llamar a los datos personales</p>
+   <ion-button> editar</ion-button>
+</ion-card>
+
+
+<ion-card class="ion-card" style="text-align: center;">
+<h2>Perfil profesional</h2>
+<p>llamar a los datos profesionales</p>
+   <ion-button> editar</ion-button>
+</ion-card>
+
+<ion-card class="ion-card" style="text-align: center;">
+    <h2>Datos laboralesl</h2>
+    <p>llamar a los datos laborales</p>
+       <ion-button> editar</ion-button>
+    </ion-card>
+
+
+    <ion-card class="ion-card" style="text-align: center;">
+        <h2>Firma profesional</h2>
+        <p>Mostrar foto firma profesional</p>
+           <ion-button> editar</ion-button>
+        </ion-card>
+    
 
 </ion-content>

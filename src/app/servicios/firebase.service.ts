@@ -62,6 +62,15 @@ async getDocument(path:string){
   return (await getDoc(doc(getFirestore(),path))).data();
 }
 
+//obtener datos del usuario actual desde firebase PARA MOSTRAR EN EL PERFIL
+async getUserData(uid: string) {
+  const docRef = doc(getFirestore(), `users/${uid}`);
+  const docSnap = await getDoc(docRef);
+  return docSnap.exists() ? docSnap.data() : null;
+}
+
+//------------------------------------------------------------------------------
+
 // cerrar sesion
 signOut(){
   getAuth().signOut();
