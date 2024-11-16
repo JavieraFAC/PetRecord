@@ -1,6 +1,46 @@
-<app-header title="api"></app-header>
+<!-- HEADER DESDE SHARED -->
+<app-header title="API"></app-header>
+<!-- HEADER DESDE SHARED -->
 
+<ion-content class="ion-padding; fondo">
 
-<ion-content>
+  <ion-card class="ion-card">
+    <h2>Listado de Razas de perros </h2>
+
+    <ion-searchbar 
+      [formControl]="searchControl" 
+      debounce="300" 
+      placeholder="Buscar raza de perro"
+    ></ion-searchbar>
+
+    <ion-list>
+      <ion-card *ngFor="let breed of filteredBreeds" class="raza">
+
+        <div class="breed-imagen">
+          <img *ngIf="breed.image" [src]="breed.image.url" [alt]="breed.name" class="breed-image"/> 
+        </div>
+        <div class="breed-info">
+          <h3>{{ breed.name }}</h3>
+          <p><strong>Peso:</strong> {{ breed.weight.metric }} kg</p>
+          <p><strong>Altura:</strong> {{ breed.height.metric }} cm</p>
+          <p><strong>Expectativa de vida:</strong> {{ breed.life_span }}</p>
+          <p><strong>Temperamento:</strong> {{ breed.temperament }}</p>
+      </div>
+      </ion-card>
+    </ion-list>
+  </ion-card>
+
+  <ion-card class="ion-card">
+    <h2>Imágenes Aleatorias de Perros</h2>
+    <div *ngIf="randomImages.length > 0">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6" *ngFor="let img of randomImages">
+            <img [src]="img" alt="Imagen de perro" style="width: 100%;" />
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </ion-card>
 
 </ion-content>

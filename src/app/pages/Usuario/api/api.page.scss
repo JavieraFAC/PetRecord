@@ -1,0 +1,60 @@
+
+h3{
+    margin-bottom: 5px;
+    color: #0FA3B1 ;
+    text-transform: uppercase;
+  
+  
+  }
+  
+  p {
+    margin: 0;
+    line-height: 1.5;
+    font-weight: 500;
+    color: black;
+  }
+  
+  ion-searchbar {
+    --border-radius: 20px;
+  }
+  
+  
+  ion-grid {
+  --ion-grid-padding: 0;
+  }
+  
+  ion-col {
+  padding: 5px;
+  }
+  
+  .raza {
+  display: flex;
+  flex-direction: column; /* Imagen arriba en pantallas pequeñas */
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 20px;
+  padding: 10px;
+  background-color: #f5f5f5;
+  box-shadow: none;
+  }
+  
+  /* Para pantallas de tamaño tablet (768px) o mayores */
+  @media (min-width: 768px) {
+  .raza {
+    flex-direction: row; /* Imagen al costado en pantallas tablet y más grandes */
+    align-items: flex-start;
+  }
+  
+  .breed-imagen {
+    margin-right: 15px;
+    max-width: 300px; /* ancho de la imagen */
+    flex-shrink: 0; 
+  }
+  }
+  
+  .breed-image {
+  width: 100%; 
+  height: auto;
+  border-radius: 10px;
+  }

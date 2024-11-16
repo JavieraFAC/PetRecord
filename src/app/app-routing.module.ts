@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { noAuthGuard } from './guards/no-auth.guard';
 import { authGuard } from './guards/auth.guard';
+import { NofoundComponent } from './componentes/nofound/nofound.component';
 
 const routes: Routes = [
 
@@ -43,6 +44,11 @@ const routes: Routes = [
   {
     path: 'configurarperfil',
     loadChildren: () => import('./pages/Usuario/configurarperfil/configurarperfil.module').then( m => m.ConfigurarperfilPageModule),
+    canActivate:[authGuard]
+  },
+  {
+    path:'**', 
+    component: NofoundComponent,
     canActivate:[authGuard]
   },
 ];
