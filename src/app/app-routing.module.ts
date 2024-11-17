@@ -47,6 +47,16 @@ const routes: Routes = [
     canActivate:[authGuard]
   },
   {
+    path: 'datospersonales',
+    loadChildren:() => import('./pages/Usuario/configurarperfil/datospersonales/datospersonales.module').then (m => m.DatospersonalesPageModule),
+    canActivate:[authGuard]
+  },
+  {
+    path: 'datosprofesionales',
+    loadChildren:() => import('./pages/Usuario/configurarperfil/datosprofesionales/datosprofesionales.module').then (m => m.DatosprofesionalesPageModule),
+    canActivate:[authGuard]
+  },
+  {
     path:'**', 
     component: NofoundComponent,
     canActivate:[authGuard]

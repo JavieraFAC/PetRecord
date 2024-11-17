@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { CargandoService } from 'src/app/servicios/cargando.service';
 import { FirebaseService } from 'src/app/servicios/firebase.service';
@@ -10,7 +10,7 @@ import { FirebaseService } from 'src/app/servicios/firebase.service';
 })
 export class PerfilPage implements OnInit {
 
-  nombre: string = '';
+  nombreUsuario: string = '';
   apellidos: string = '';
   run: string = '';
 
@@ -19,18 +19,24 @@ export class PerfilPage implements OnInit {
   cargandoS = inject(CargandoService);
   auth = inject(AngularFireAuth);
 
+  cdr = inject(ChangeDetectorRef);
 
-  ngOnInit() {    this.auth.currentUser.then(user => {
-    if (user) {
-      // Llamamos a la función para obtener los datos del usuario desde Firestore
-      this.fireBS.getUserData(user.uid).then(data => {
-        if (data) {
-          this.nombre = data['nombre'] || '';
-          this.run = data['run'] || '';
-          this.apellidos = data['apellidos'];
-        }
-      });
+
+  async ngOnInit() {
+    const uid = (await this.fireBS.getAuth().currentUser)?.uid;
+    if (!uid) return;
+  
+    console.log("UID de perfil:", uid);
+  
+    const userData = await this.fireBS.getUserData(uid);
+    console.log("Datos de usuario:", userData);
+  
+    if (userData) {
+      // Asegúrate de que estos valores están siendo asignados correctamente
+      this.nombreUsuario = `${userData['nombre']} ${userData['apellidos']}`|| 'Sin nombre'; // Aquí debería ser 'nombre' y no 'datosPersonales.nombre'
+      this.run = userData['run'] || 'Sin RUN';  // Aquí debería ser 'run' y no 'datosPersonales.run'
+      this.cdr.detectChanges();
     }
-  });
-}
-}
+  }
+  
+}  

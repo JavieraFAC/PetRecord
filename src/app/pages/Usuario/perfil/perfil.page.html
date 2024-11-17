@@ -3,24 +3,26 @@
 <ion-content class="fondo">
 <ion-grid>
 <!-----PERFIL----->
+
 <ion-card class="perfil-card" [routerLink]="['/configurarperfil']">
-    <ion-card-content>
-      <ion-grid>
-        <ion-row>
-          <!-- Columna para la imagen del perfil -->
-          <ion-col size="auto" class="img-perfil">
-            <img src="ruta_de_la_imagen" alt="Foto de perfil" class="profile-img">
-          </ion-col>
-          
-          <!-- Columna para los datos del perfil -->
-          <ion-col size="auto" class="datos-medico">
-            <ion-card-title class="nombre">{{ nombre }} {{apellidos}}</ion-card-title>
-            <p class="run">RUN: {{ run }}</p>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card-content>
-  </ion-card>
+  <ion-card-content>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="auto" class="img-perfil">
+          <img src="ruta_de_la_imagen" alt="Foto de perfil" class="profile-img">
+        </ion-col>
+        
+        <ion-col size="auto" class="datos-medico">
+          <ion-card-title class="nombre">{{ nombreUsuario }}</ion-card-title>
+          <p class="run">RUN: {{ run }}</p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
+</ion-card>
+
+
+
   <!-----PERFIL----->
 
   <ion-row>

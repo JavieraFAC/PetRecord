@@ -3,7 +3,7 @@
 
 
 <!-------------------------------------------------------->
-<ion-card class="ion-card" style="text-align: center;">
+<ion-card class="card" style="text-align: center;">
     <form [formGroup]="form">      
         <ion-avatar class="imagenPerfil" *ngIf="form.value.imagenPerfil"> <img [src]="form.value.imagenPerfil" /> </ion-avatar>
         <ion-icon class="icono" *ngIf="!form.value.imagenPerfil" name="image-outline"> </ion-icon>
@@ -14,24 +14,18 @@
   </form>   
   </ion-card>
 
-<ion-card class="ion-card" style="text-align: center;">
+<ion-card class="card" style="text-align: center;">
  <h2>Datos personales</h2>
  <p>llamar a los datos personales</p>
-   <ion-button> editar</ion-button>
+   <ion-button [routerLink]="['/datospersonales']" class="editar"> editar información</ion-button>
 </ion-card>
 
 
-<ion-card class="ion-card" style="text-align: center;">
+<ion-card class="card" style="text-align: center;">
 <h2>Perfil profesional</h2>
 <p>llamar a los datos profesionales</p>
-   <ion-button> editar</ion-button>
+   <ion-button [routerLink]="['/datosprofesionales']" class="editar"> editar información</ion-button>
 </ion-card>
-
-<ion-card class="ion-card" style="text-align: center;">
-    <h2>Datos laboralesl</h2>
-    <p>llamar a los datos laborales</p>
-       <ion-button> editar</ion-button>
-    </ion-card>
 
 
     <ion-card class="ion-card" style="text-align: center;">

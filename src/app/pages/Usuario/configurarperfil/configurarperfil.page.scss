@@ -14,3 +14,28 @@
     align-items: center;
 
 }
+
+.card{
+    padding-top: 5%;
+    padding-bottom: 5%;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-left: 10%;
+    margin-right: 10%;
+    background: rgba(255, 255, 255);
+    border: 1px solid rgb(100, 181, 239);
+    box-shadow: 0 0 0px;
+    border-radius: 20px; 
+}
+
+.editar{
+    --background: #ededed ;
+    --color: #000000 ;
+    --border-radius: 20px;
+    --box-shadow: 0;
+  
+    margin-top: 20px;
+    display: block;
+
+
+  }

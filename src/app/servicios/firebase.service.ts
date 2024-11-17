@@ -78,4 +78,23 @@ signOut(){
   this.cargandoS.routerLink('/login');
 }
 
+
+//----------------------
+// datos personales
+getUserUID(): Promise<string> {
+  return new Promise((resolve, reject) => {
+    this.auth.onAuthStateChanged((user) => {
+      if (user) {
+        resolve(user.uid);
+      } else {
+        reject('Usuario no autenticado');
+      }
+    });
+  });
+}
+
+updateDocument(path: string, data: any): Promise<void> {
+  return this.firestore.doc(path).update(data);
+}
+
 }

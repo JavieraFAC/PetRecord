@@ -7,6 +7,14 @@ const routes: Routes = [
   {
     path: '',
     component: ConfigurarperfilPage
+  },
+  {
+    path: 'datospersonales',
+    loadChildren: () => import('./datospersonales/datospersonales.module').then( m => m.DatospersonalesPageModule)
+  },
+  {
+    path: 'datosprofesionales',
+    loadChildren: () => import('./datosprofesionales/datosprofesionales.module').then( m => m.DatosprofesionalesPageModule)
   }
 ];
 
