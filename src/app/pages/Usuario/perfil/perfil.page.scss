@@ -5,13 +5,11 @@
   }
   //  card datos medico
   .perfil-card{
-    padding-top: 5%;
-    padding-bottom: 5%;
-    padding-left: 5%;
-    padding-right: 5%;
-    box-shadow: 0 1px 10px rgba(96, 96, 96, 0.274);
-    background: rgba(255, 255, 255, 70%);
+    box-shadow: 0 0 0;
+    background: rgba(168, 207, 255, 0.6);
     border-radius: 20px; 
+    margin-bottom: 50px;
+    margin-top: 20px;
   }
   .img-perfil {
     display: flex;
@@ -73,14 +71,14 @@
     padding-bottom: 1%;
     padding-left: 5%;
     padding-right: 5%;
-    border: 1px solid rgb(216, 232, 255);
+    border: 1px solid rgb(100, 181, 239);
     box-shadow: 0 0 0px;
-    background: #fafcfc;
+    background: #fffffa;
     border-radius: 20px; 
     text-align: center;
     cursor: pointer;
     margin: 1%;
-    height: 100px;
+    height: 150px;
           /* Agregar Flexbox para centrar contenido */
           display: flex;                
           flex-direction: column;       

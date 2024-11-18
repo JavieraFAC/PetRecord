@@ -97,4 +97,27 @@ updateDocument(path: string, data: any): Promise<void> {
   return this.firestore.doc(path).update(data);
 }
 
+// -----------------------
+// --- especies ----
+async getEspecies(): Promise<any[]> {
+  const especiesSnapshot = await this.firestore.collection('especies').get().toPromise();
+  const especies = especiesSnapshot.docs.map(doc => ({ id: doc.id, ...(doc.data() as Record<string, any>) }));
+
+  return especies;
+}
+
+async getMuestras():  Promise<any[]> {
+  const muestrasSnapshot = await this.firestore.collection('muestras').get().toPromise();
+  const muestras = muestrasSnapshot.docs.map(doc => ({ id: doc.id, ...(doc.data() as Record<string, any>) }));
+
+  return muestras;
+}
+
+async getExamenes(): Promise<any[]> {
+  const examenesSnapshot = await this.firestore.collection('examenes').get().toPromise();
+  const examenes = examenesSnapshot.docs.map(doc => ({ id: doc.id, ...(doc.data() as Record<string, any>) }));
+
+  return examenes;
+}
+
 }

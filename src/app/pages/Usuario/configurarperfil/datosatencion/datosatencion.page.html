@@ -1,0 +1,71 @@
+<app-header backButton="/perfil" title="Preferencias de atención"></app-header>
+
+<ion-content class="fondo">
+
+  <!----------------ESPECIES-------------------->
+
+  <ion-card class="ion-card">
+    <ion-card-header> 
+      <h2>Especies que atiendes</h2>
+      <p style="text-align: center;">Selecciona las especies que atiendes en consulta</p>
+    </ion-card-header>
+    <ion-card-content>
+      <!-- Listado de especies -->
+      <ion-list>
+        <ion-item *ngFor="let especie of especies">
+          <ion-label>{{ especie.especie }}</ion-label>
+          <ion-checkbox slot="end" [(ngModel)]="especie.checked"></ion-checkbox>
+        </ion-item>
+      </ion-list>
+      <!-- Botón para guardar -->
+      <ion-button expand="block" (click)="guardarEspecies()" class="boton-editar">Guardar Especies</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+
+    <!----------------EXAMENES-------------------->
+
+    <ion-card class="ion-card">
+      <ion-card-header> 
+        <h2>Examenes</h2>
+        <p style="text-align: center;">Selecciona los examenes que realizas en consulta</p>
+      </ion-card-header>
+      <ion-card-content>
+        <!-- Listado de especies -->
+        <ion-list>
+          <ion-item *ngFor="let examen of examenes">
+            <ion-label>{{ examen.examen }}</ion-label>
+            <ion-checkbox slot="end" [(ngModel)]="examen.checked"></ion-checkbox>
+          </ion-item>
+        </ion-list>
+        <!-- Botón para guardar -->
+        <ion-button expand="block" (click)="guardarExamenes()" class="boton-editar">Guardar Examenes</ion-button>
+      </ion-card-content>
+    </ion-card>
+  
+  
+    <!-----------------MUESTRAS MEDICAS------------------->
+
+  <!-- Sección para las muestras médicas -->
+  <ion-card class="ion-card">
+    <ion-card-header>
+      <h2>Muestras médicas</h2>
+      <p style="text-align: center;">Selecciona las muestras médicas que atiendes</p>
+    </ion-card-header>
+    <ion-card-content>
+      <!-- Listado de muestras médicas -->
+      <ion-list>
+        <ion-item *ngFor="let muestra of muestras">
+          <ion-label>{{ muestra.muestra }}</ion-label>
+          <ion-checkbox slot="end" [(ngModel)]="muestra.checked"></ion-checkbox>
+        </ion-item>
+      </ion-list>
+        <!-- Botón para guardar muestras -->
+        <ion-button expand="block" (click)="guardarMuestras()" class="boton-editar">Guardar Muestras</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+
+    <!------------------------------------>  
+
+</ion-content>

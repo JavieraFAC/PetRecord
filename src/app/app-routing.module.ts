@@ -57,6 +57,11 @@ const routes: Routes = [
     canActivate:[authGuard]
   },
   {
+    path: 'datosatencion',
+    loadChildren:() => import('./pages/Usuario/configurarperfil/datosatencion/datosatencion.module').then(m => m.DatosatencionPageModule),
+    canActivate:[authGuard]
+  },
+  {
     path:'**', 
     component: NofoundComponent,
     canActivate:[authGuard]

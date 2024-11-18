@@ -15,6 +15,10 @@ const routes: Routes = [
   {
     path: 'datosprofesionales',
     loadChildren: () => import('./datosprofesionales/datosprofesionales.module').then( m => m.DatosprofesionalesPageModule)
+  },
+  {
+    path: 'datosatencion',
+    loadChildren: () => import('./datosatencion/datosatencion.module').then( m => m.DatosatencionPageModule)
   }
 ];
 
