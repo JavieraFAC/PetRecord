@@ -1,0 +1,57 @@
+.fab-button {
+    --background: #ff6347;
+    --border-radius: 50%;
+    --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .fab-button:hover {
+    transform: scale(1.1); /* Efecto de aumento del botón al pasar el ratón */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada al pasar el mouse */
+  }
+  
+  .fab-button:active {
+    transform: scale(0.95); /* Efecto de disminución al hacer clic */
+  }
+  
+
+  .formulario-tutor {
+    position: fixed;
+    top: 10%;
+    left: 5%;
+    right: 5%;
+    z-index: 100;
+    background: white;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .cerrar-formulario {
+    position: absolute; 
+    top: 0px; 
+    left: 0px; 
+    z-index: 10;
+    --color: #ff8630;
+    font-size: 20px;
+  }
+  
+  
+  .boton-tutor{
+    --background: #ffbf9a ;
+    --color: #000000 ;
+    --border-radius: 20px;
+    --box-shadow: 0;
+  
+    margin-top: 20px;
+    display: block;
+
+  }
+
+  .agregar-tutor{
+    background: rgba(255, 255, 255);
+    border: 1px solid rgb(100, 181, 239);
+    box-shadow: 0 0 0px;
+    border-radius: 20px; 
+
+  }

@@ -1,6 +1,150 @@
 <app-header  backButton="/perfil" title="Tutores"></app-header>
 
 
-<ion-content>
+<ion-content class="fondo">
+<!--------------------------------------------------------------->
+<!-- Agregar Tutor -->
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed" class="agregar">
+        <ion-fab-button (click)="abrirFormulario()">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+<!--------------------------------------------------------------->
+<!----------------------formulario nuevo tutor----------------------------------------->
+     <div *ngIf="tutorFormularioAbierto" class="formulario-tutor">
+       <ion-card class="agregar-tutor">
+        <ion-card-header>
+            <ion-button fill="clear" class="cerrar-formulario" (click)="cerrarFormulario()">
+              <ion-icon name="close"></ion-icon>
+            </ion-button>
+            <ion-card-title> <h2>Agregar tutor</h2></ion-card-title>
+          </ion-card-header>
 
+        <ion-card-content>
+<!----------------------------------------------------------------------------------------------->
+<form [formGroup]="form" (ngSubmit)="submit()" (keypress.enter)="submit()">
+
+    <!---------------NOMBRE------------------->
+                <app-formulario
+                  [control]="form.controls.Tutornombre"
+                  autocomplete="nombre"
+                  type="text"
+                  label="Nombre"
+                ></app-formulario>
+                      <div class="validators" *ngIf="form.controls.Tutornombre.errors && form.controls.Tutornombre.touched">
+                        <div *ngIf="form.controls.Tutornombre.errors?.['required']">Debes ingresar tú nombre</div>
+                        <div *ngIf="form.controls.Tutornombre.errors?.['minlenght']">Ingresa un nombre válido</div>
+                      </div>
+    <!---------------APELLIDOS------------------->
+                <app-formulario
+                  [control]="form.controls.Tutorapellidos"
+                  autocomplete="apellidos"
+                  type="text"
+                  label="Apellidos"
+                ></app-formulario>
+    
+                      <div class="validators" *ngIf="form.controls.Tutorapellidos.errors && form.controls.Tutorapellidos.touched">
+                        <div *ngIf="form.controls.Tutorapellidos.errors?.['required']">Debes ingresar tús apellidos</div>
+                        <div *ngIf="form.controls.Tutorapellidos.errors?.['minlenght']">Ingresa apellidos válidos</div>
+                      </div>
+    <!---------------RUN------------------->
+                <app-formulario
+                  [control]="form.controls.Tutorrun"
+                  autocomplete="run"
+                  type="text"
+                  label="RUN"
+                ></app-formulario>
+    
+                    <div class="validators" *ngIf="form.controls.Tutorrun.errors && form.controls.Tutorrun.touched">
+                      <div *ngIf="form.controls.Tutorrun.errors?.['invalidRut']">RUT inválido. Verifica el formato y los dígitos.</div>
+                    </div>
+<!---------------Direccion------------------->
+                <app-formulario
+                [control]="form.controls.Tutordireccion"
+                autocomplete="Direccion"
+                type="text"
+                label="Dirección"
+              ></app-formulario>
+  
+                    <div class="validators" *ngIf="form.controls.Tutordireccion.errors && form.controls.Tutordireccion.touched">
+                      <div *ngIf="form.controls.Tutordireccion.errors?.['required']">Debes ingresar una dirección</div>
+                      <div *ngIf="form.controls.Tutordireccion.errors?.['minlenght']">Ingresa dirección válida</div>
+                    </div>
+<!---------------Ciudad------------------->
+                <app-formulario
+                [control]="form.controls.Tutorciudad"
+                autocomplete="Ciudad"
+                type="text"
+                label="Ciudad"
+                ></app-formulario>
+
+                    <div class="validators" *ngIf="form.controls.Tutorciudad.errors && form.controls.Tutorciudad.touched">
+                    <div *ngIf="form.controls.Tutorciudad.errors?.['required']">Debes ingresar una ciudad</div>
+                    <div *ngIf="form.controls.Tutorciudad.errors?.['minlenght']">Ingresa Ciudad válida</div>
+                    </div>
+
+    <!---------------CORREO------------------->
+                <app-formulario
+                  [control]="form.controls.Tutoremail"
+                  autocomplete="email"
+                  type="email"
+                  label="Correo electrónico"
+                ></app-formulario>  
+                    <div class="validators" *ngIf="form.controls.Tutoremail.errors && form.controls.Tutoremail.touched">
+                      <div *ngIf="form.controls.Tutoremail.errors?.['required']">Debes ingresar correo electrónico</div>
+                      <div *ngIf="form.controls.Tutoremail.errors?.['email']">Ingresa un correo válido</div>
+                    </div>
+    <!---------------TELEFONO--------------------->
+                <app-formulario
+                    [control]="form.controls.Tutortelefono"
+                    autocomplete="tel"
+                    type="tel"
+                    label="Teléfono"
+                ></app-formulario>
+    
+                <div class="validators" *ngIf="form.controls.Tutortelefono.errors && form.controls.Tutortelefono.touched">
+                  <div *ngIf="form.controls.Tutortelefono.errors?.['required']">El teléfono es requerido.</div>
+                  <div *ngIf="form.controls.Tutortelefono.errors?.['pattern']">El teléfono debe contener solo números.</div>
+                </div>
+<!---------------Ciudad------------------->
+                <app-formulario
+                [control]="form.controls.Tutorobs"
+                autocomplete="Observación"
+                type="text"
+                label="Observación"
+                ></app-formulario>
+                    <div class="validators" *ngIf="form.controls.Tutorobs.errors && form.controls.Tutorobs.touched"></div>
+        <!------------------------------------------->     
+            <ion-button type="submit" class="boton-tutor" [disabled]="form.invalid">
+              Agregar tutor
+            </ion-button>
+        </form>
+<!------------------------------------------------------------------------------------------------>
+
+        </ion-card-content>
+       </ion-card>
+     </div>
+<!------------------------------------------------------------------------------->
+  <!---------------------- Lista de tutores ------------------------------------>
+  <ion-card class="ion-card">
+    <ion-card-title>
+      <h2>Lista de tutores</h2>
+    </ion-card-title>
+    <ion-card-content>
+      <ion-list>
+        <ion-item-sliding *ngFor="let tutor of tutores">
+          <ion-item>
+            <ion-label>
+              <h3>{{ tutor.Tutornombre }} {{ tutor.Tutorapellidos }}</h3>
+              <p>Teléfono: {{ tutor.Tutortelefono }}</p>
+              <p>Dirección: {{ tutor.Tutordireccion }}</p>
+              <p>Mascotas: -- Proximamente</p>
+            </ion-label>
+            <ion-button slot="end" (click)="detallestutor()">Editar</ion-button>
+          </ion-item>
+        </ion-item-sliding>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+<!------------------------------------------------------------------------------->
 </ion-content>

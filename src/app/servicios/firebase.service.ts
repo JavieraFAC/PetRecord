@@ -1,11 +1,13 @@
 import { inject, Injectable } from '@angular/core';
 import { AngularFireAuth} from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { getFirestore, setDoc, doc, getDoc} from '@angular/fire/firestore';
+import {AngularFireStorage } from'@angular/fire/compat/storage'; // imagen
+import { getStorage, uploadString,ref,getDownloadURL} from 'firebase/storage'; // imagen
+import { getFirestore, setDoc, doc, getDoc,addDoc, collection, collectionData, query} from '@angular/fire/firestore';
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile} from 'firebase/auth';
 import { Usuario } from '../models/usuario.model';
 import { CargandoService } from './cargando.service';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -16,8 +18,7 @@ export class FirebaseService {
   auth = inject(AngularFireAuth);
   firestore = inject(AngularFirestore);
   cargandoS = inject(CargandoService);
-
-
+  storage = inject(AngularFireStorage);
 
       // Observable para el estado de autenticación
       isAuthenticated$ = new BehaviorSubject<boolean>(false);
@@ -28,7 +29,6 @@ export class FirebaseService {
           this.isAuthenticated$.next(!!user);
         });
       }
-
 
   //--- Autenticación de usuario
 getAuth(){
@@ -70,14 +70,12 @@ async getUserData(uid: string) {
 }
 
 //------------------------------------------------------------------------------
-
 // cerrar sesion
 signOut(){
   getAuth().signOut();
   localStorage.removeItem('user');
   this.cargandoS.routerLink('/login');
 }
-
 
 //----------------------
 // datos personales
@@ -96,28 +94,46 @@ getUserUID(): Promise<string> {
 updateDocument(path: string, data: any): Promise<void> {
   return this.firestore.doc(path).update(data);
 }
+//------------------------------------------------------------------------------
+// ----------------------- CONFIGURACION CUENTA ---------------------
 
-// -----------------------
-// --- especies ----
 async getEspecies(): Promise<any[]> {
   const especiesSnapshot = await this.firestore.collection('especies').get().toPromise();
   const especies = especiesSnapshot.docs.map(doc => ({ id: doc.id, ...(doc.data() as Record<string, any>) }));
-
   return especies;
 }
 
 async getMuestras():  Promise<any[]> {
   const muestrasSnapshot = await this.firestore.collection('muestras').get().toPromise();
-  const muestras = muestrasSnapshot.docs.map(doc => ({ id: doc.id, ...(doc.data() as Record<string, any>) }));
-
+  const muestras = muestrasSnapshot.docs.map(doc => ({ id: doc.id, ...(doc.data() as Record<string, any>) }))
   return muestras;
 }
 
 async getExamenes(): Promise<any[]> {
   const examenesSnapshot = await this.firestore.collection('examenes').get().toPromise();
   const examenes = examenesSnapshot.docs.map(doc => ({ id: doc.id, ...(doc.data() as Record<string, any>) }));
-
   return examenes;
 }
+//------------------------------------------------------------------------------
+// ------------------------------------ TUTORES ------------------------------------
+// agregar tutor
+addTutor(path: string, data:any){
+  return addDoc(collection(getFirestore(),path),data);
+}
+// obtener tutores
+getCollectionTutor(path: string , collectionQuery?:any){
+  const ref = collection(getFirestore(), path);
+  return collectionData(query(ref, collectionQuery),{idField: 'id'});
+}
 
+
+
+//------------------------------------------------------------------------------
+// almacenamiento imagenes
+async guardarImagen(path: string, data_url: string){
+  return uploadString(ref(getStorage(),path),data_url,'data_url').then(()=>{
+    return getDownloadURL(ref(getStorage(),path))
+  })
+
+}
 }

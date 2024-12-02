@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: TutoresPage
+  },
+  {
+    path: 'detalle-tutor',
+    loadChildren: () => import('./detalle-tutor/detalle-tutor.module').then( m => m.DetalleTutorPageModule)
   }
 ];
 
