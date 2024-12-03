@@ -11,6 +11,7 @@ export class CargandoService {
 cargandoC = inject(LoadingController);
 toastC = inject(ToastController);
 router = inject(Router);
+loadingController = inject(LoadingController);
 
 
 // animación de carga de informacion
@@ -23,6 +24,7 @@ async presentToast(opts?:ToastOptions){
   toast.present();
 
 }
+
 
 // funcion para enrutar paginas
 routerLink(url:string){
@@ -49,5 +51,6 @@ async tomarFoto(promptLabelHeader: string){
   })
 
 }
+// ----------------------------------------------------------
 
 }

@@ -126,6 +126,52 @@ getCollectionTutor(path: string , collectionQuery?:any){
   return collectionData(query(ref, collectionQuery),{idField: 'id'});
 }
 
+//--- modificar tutor
+
+obtenerTutorPorId3(tutorId: string) {
+  return this.firestore.collection('tutores').doc(tutorId).valueChanges();
+}
+
+actualizarTutor(tutorId: string, tutorData: any) {
+  return this.firestore.collection('tutores').doc(tutorId).update(tutorData);
+}
+
+
+async obtenerTutorPorId(tutorId: string) {
+  try {
+    // Obtener el usuario autenticado
+    const user = getAuth().currentUser;
+
+    if (user) {
+      // Usar el UID del usuario autenticado para acceder a la colección de tutores
+      const tutorDocRef = doc(getFirestore(), `users/${user.uid}/tutores`, tutorId);
+      const tutorDocSnap = await getDoc(tutorDocRef);
+
+      if (tutorDocSnap.exists()) {
+        console.log('Documento de tutor:', tutorDocSnap.data()); // Verifica los datos que estás obteniendo
+        return tutorDocSnap.data(); // Devuelve los datos si el documento existe
+      } else {
+        console.log('No se encontró el documento de este tutor.');
+        return null; // Si no existe, devuelve null
+      }
+    } else {
+      console.log('No hay usuario autenticado');
+      return null;
+    }
+  } catch (error) {
+    console.error('Error al obtener los datos del tutor:', error);
+    return null; // Retorna null si ocurre un error
+  }
+}
+
+
+
+
+
+
+
+
+
 
 
 //------------------------------------------------------------------------------

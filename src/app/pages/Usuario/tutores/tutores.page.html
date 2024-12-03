@@ -106,7 +106,7 @@
                   <div *ngIf="form.controls.Tutortelefono.errors?.['required']">El teléfono es requerido.</div>
                   <div *ngIf="form.controls.Tutortelefono.errors?.['pattern']">El teléfono debe contener solo números.</div>
                 </div>
-<!---------------Ciudad------------------->
+<!---------------Observación------------------->
                 <app-formulario
                 [control]="form.controls.Tutorobs"
                 autocomplete="Observación"
@@ -139,12 +139,16 @@
               <p>Teléfono: {{ tutor.Tutortelefono }}</p>
               <p>Dirección: {{ tutor.Tutordireccion }}</p>
               <p>Mascotas: -- Proximamente</p>
+
+              
             </ion-label>
-            <ion-button slot="end" (click)="detallestutor()">Editar</ion-button>
+            <ion-button slot="end" (click)="verDetalle(tutor.id)"  class="editar">Más</ion-button>
           </ion-item>
         </ion-item-sliding>
       </ion-list>
     </ion-card-content>
   </ion-card>
+
+
 <!------------------------------------------------------------------------------->
 </ion-content>

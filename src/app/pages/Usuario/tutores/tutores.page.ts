@@ -4,6 +4,7 @@ import { ToastController } from '@ionic/angular';
 import { CargandoService } from 'src/app/servicios/cargando.service';
 import { FirebaseService } from 'src/app/servicios/firebase.service';
 import { Usuario } from 'src/app/models/usuario.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tutores',
@@ -18,6 +19,7 @@ export class TutoresPage implements OnInit {
   fireBS = inject(FirebaseService);
   cargandoS = inject(CargandoService);
   toastController = inject(ToastController);
+  router = inject(Router);
 
 // Formulario para gregar tutor
     form = new FormGroup({
@@ -68,9 +70,9 @@ cargarTutores() {
 }
 
 
-  guardarTutor() { }
-  editarTutor() {}
-  detallestutor(){ this.cargandoS.routerLink('/tutores/detalle-tutor');}
+verDetalle(tutorId: string) {
+  this.router.navigate(['tutores/detalle-tutor', tutorId]);
+}
 
 
   //--- guardar tutor

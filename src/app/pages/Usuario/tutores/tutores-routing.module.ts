@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { TutoresPage } from './tutores.page';
+import { DetalleTutorPage } from './detalle-tutor/detalle-tutor.page';
 
 const routes: Routes = [
   {
@@ -9,8 +10,9 @@ const routes: Routes = [
     component: TutoresPage
   },
   {
-    path: 'detalle-tutor',
-    loadChildren: () => import('./detalle-tutor/detalle-tutor.module').then( m => m.DetalleTutorPageModule)
+    path: 'detalle-tutor/:id',
+    loadChildren: () => import('./detalle-tutor/detalle-tutor.module').then( m => m.DetalleTutorPageModule),
+    component: DetalleTutorPage
   }
 ];
 

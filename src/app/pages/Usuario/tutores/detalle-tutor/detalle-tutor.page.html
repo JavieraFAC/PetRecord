@@ -3,28 +3,44 @@
 <ion-content class="fondo">
 
   <!-----PERFIL----->
-<ion-card class="detalletutor">
-  <ion-card-content>
-          <ion-card-title class="nombre">Nombre tutor</ion-card-title>
-          <p><ion-icon name="run"></ion-icon>Run: </p>
-          <p><ion-icon name="direccion"></ion-icon>Dirección: </p>
-          <p><ion-icon name="ciudad"></ion-icon>Ciudad: </p>
-          <p><ion-icon name="telefono"></ion-icon>Teléfono: </p>
-          <p><ion-icon name="e-mail"></ion-icon>Email: </p>
-          <p><ion-icon name="obs"></ion-icon>Observaciones: </p>
+  <ion-card class="detalletutor">
+    <ion-card-content>
+    <h2>Datos tutor</h2>
+    <br>
 
-  </ion-card-content>
-</ion-card>
+
+      <div *ngIf="tutor">
+        <p><strong>Nombre:</strong> {{ tutor.Tutornombre }}</p>
+        <p><strong>Apellidos:</strong> {{ tutor.Tutorapellidos }}</p>
+        <p><strong>RUN:</strong> {{ tutor.Tutorrun }}</p>
+        <p><strong>Dirección:</strong> {{ tutor.Tutordireccion }}</p>
+        <p><strong>Ciudad:</strong> {{ tutor.Tutorciudad }}</p>
+        <p><strong>Teléfono:</strong> {{ tutor.Tutortelefono }}</p>
+        <p><strong>Email:</strong> {{ tutor.Tutoremail }}</p>
+        <p><strong>Observaciones:</strong>{{tutor.Tutorobs}}</p>
+
+      </div>
+      <div *ngIf="!tutor">
+        <p>No se han encontrado datos para este tutor </p>
+      </div>
+
+    </ion-card-content> 
+  </ion-card>
+  
+  
   <!-----PERFIL----->
 
 <!-------MASCOTAS-------->
 <ion-card class="mascotas">
   <ion-card-content>
-          <ion-card-title class="nombre">Nombre mascota</ion-card-title>
+          <h2> Mascotas</h2>
+          <h3>Nombre: </h3>
           <p><ion-icon name="especie"></ion-icon>Especie </p>
           <p><ion-icon name="estado"></ion-icon>Estado </p>
   </ion-card-content>
 </ion-card>
 <!-------MASCOTAS-------->
+
+<!------------------------------------->
 
 </ion-content>
