@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { CargandoService } from 'src/app/servicios/cargando.service';
 import { FirebaseService } from 'src/app/servicios/firebase.service';
 
+
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.page.html',
@@ -38,5 +39,7 @@ export class PerfilPage implements OnInit {
       this.cdr.detectChanges();
     }
   }
-  
-}  
+
+
+
+}
