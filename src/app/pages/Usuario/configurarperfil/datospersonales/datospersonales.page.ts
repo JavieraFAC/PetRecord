@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastController } from '@ionic/angular';
@@ -16,6 +16,7 @@ export class DatospersonalesPage implements OnInit {
   cargandoS = inject(CargandoService);
   auth = inject(AngularFireAuth);
   toastController = inject(ToastController);
+  cdr = inject(ChangeDetectorRef);
 
   form: FormGroup;
 
@@ -64,6 +65,15 @@ export class DatospersonalesPage implements OnInit {
       this.mostrarToast('Por favor, completa todos los campos correctamente.', 'danger');
     }
   }
+
+
+  // tomar imagen
+  async tomarImagen() {
+
+  }
+  
+  
+
 
   private async mostrarToast(mensaje: string, color: string) {
     const toast = await this.toastController.create({

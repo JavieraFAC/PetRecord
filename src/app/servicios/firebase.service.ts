@@ -18,7 +18,7 @@ export class FirebaseService {
   auth = inject(AngularFireAuth);
   firestore = inject(AngularFirestore);
   cargandoS = inject(CargandoService);
-  storage = inject(AngularFireStorage);
+  storage = inject(AngularFireStorage); // subir imagen
 
       // Observable para el estado de autenticación
       isAuthenticated$ = new BehaviorSubject<boolean>(false);
@@ -165,21 +165,17 @@ async obtenerTutorPorId(tutorId: string) {
 }
 
 
-
-
-
-
-
-
-
-
-
 //------------------------------------------------------------------------------
-// almacenamiento imagenes
+// almacenamiento de imagen firebase (no se puedo utilizar)
+
+addFoto(path: string, data:any){
+  return addDoc(collection(getFirestore(),path),data);
+}
+
 async guardarImagen(path: string, data_url: string){
   return uploadString(ref(getStorage(),path),data_url,'data_url').then(()=>{
     return getDownloadURL(ref(getStorage(),path))
   })
-
 }
+
 }

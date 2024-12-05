@@ -1,8 +1,7 @@
 import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { CargandoService } from 'src/app/servicios/cargando.service';
 import { FirebaseService } from 'src/app/servicios/firebase.service';
-
+import { Directory, Filesystem } from '@capacitor/filesystem';
+import { CargandoService } from 'src/app/servicios/cargando.service';
 
 @Component({
   selector: 'app-perfil',
@@ -11,35 +10,51 @@ import { FirebaseService } from 'src/app/servicios/firebase.service';
 })
 export class PerfilPage implements OnInit {
 
+
   nombreUsuario: string = '';
   apellidos: string = '';
   run: string = '';
 
-
   fireBS = inject(FirebaseService);
   cargandoS = inject(CargandoService);
-  auth = inject(AngularFireAuth);
-
   cdr = inject(ChangeDetectorRef);
 
+  imagenPerfil: string | null = null;
 
   async ngOnInit() {
     const uid = (await this.fireBS.getAuth().currentUser)?.uid;
     if (!uid) return;
-  
+
     console.log("UID de perfil:", uid);
-  
+
     const userData = await this.fireBS.getUserData(uid);
     console.log("Datos de usuario:", userData);
-  
+
     if (userData) {
-      // Asegúrate de que estos valores están siendo asignados correctamente
-      this.nombreUsuario = `${userData['nombre']} ${userData['apellidos']}`|| 'Sin nombre'; // Aquí debería ser 'nombre' y no 'datosPersonales.nombre'
-      this.run = userData['run'] || 'Sin RUN';  // Aquí debería ser 'run' y no 'datosPersonales.run'
-      this.cdr.detectChanges();
+      this.nombreUsuario = `${userData['nombre']} ${userData['apellidos']}` || 'Sin nombre';
+      this.run = userData['run'] || 'Sin RUN';
+      
+
+        // Recuperar la imagen guardada desde localStorage
+        this.cargarImagenPerfil(); 
     }
   }
 
 
 
+  ionViewWillEnter() {
+    // Cuando se va a mostrar la página, cargar la imagen
+    this.cargarImagenPerfil();
+  }
+
+  private cargarImagenPerfil() {
+    // Leer la imagen desde localStorage
+    const imagenGuardada = localStorage.getItem('imagenPerfil');
+    if (imagenGuardada) {
+      this.imagenPerfil = imagenGuardada;
+    } else {
+      console.log('No se encontró imagen guardada en localStorage');
+    }
+  }
 }
+

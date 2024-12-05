@@ -9,7 +9,10 @@
     <ion-grid>
       <ion-row>
         <ion-col size="auto" class="img-perfil">
-          <img src="ruta_de_la_imagen" alt="Foto de perfil" class="profile-img">
+          <ion-avatar *ngIf="imagenPerfil">
+            <img [src]="imagenPerfil" alt="Imagen de perfil" />
+          </ion-avatar>
+          <ion-icon *ngIf="!imagenPerfil" name="image-outline"></ion-icon>
         </ion-col>
         
         <ion-col size="auto" class="datos-medico">
