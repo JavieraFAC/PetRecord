@@ -138,8 +138,12 @@
               <h3>{{ tutor.Tutornombre }} {{ tutor.Tutorapellidos }}</h3>
               <p>Teléfono: {{ tutor.Tutortelefono }}</p>
               <p>Dirección: {{ tutor.Tutordireccion }}</p>
-              <p>Mascotas: -- Proximamente</p>
-
+              <p>Mascotas: </p>
+              <ul>
+                <li *ngFor="let mascota of tutor.mascotas" class="lista-mascotas">
+                  {{ mascota.nombre }}
+                </li>
+              </ul>
               
             </ion-label>
             <ion-button slot="end" (click)="verDetalle(tutor.id)"  class="boton-mas"><ion-icon name="arrow-forward-circle-outline"></ion-icon></ion-button>

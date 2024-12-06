@@ -8,10 +8,10 @@ export interface Tutor{
     telefono:number,
     email:string,
     obs: string;
+    mascotas: Mascota[];
 
 }
 export interface Mascota{
-    mid: string;
     estado:string;
     nombre: string;
     especie: string;
@@ -19,7 +19,7 @@ export interface Mascota{
     pelaje: string;
     color: string;
     sexo: string;
-    esterilizado: boolean;
+    esterilizado: string;
     fechanacimiento: Date;
     chip: string;
     gsangineo: string;

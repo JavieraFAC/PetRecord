@@ -6,6 +6,8 @@ import { ToastController } from '@ionic/angular';
 import { CargandoService } from 'src/app/servicios/cargando.service';
 import { FirebaseService } from 'src/app/servicios/firebase.service';
 import { EmailService } from 'src/app/servicios/email.service';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Tutor,Mascota } from 'src/app/models/tutor.model';
 
 @Component({
   selector: 'app-detalle-tutor',
@@ -17,6 +19,9 @@ export class DetalleTutorPage implements OnInit {
   tutor: any;
   tutorData: any;
   tutorId: string | null = null;
+  formularioMascotaAbierto = false;
+  mascotaForm: FormGroup;
+  mascotas: any [];
 
   fireBS = inject(FirebaseService);
   cargandoS = inject(CargandoService);
@@ -24,20 +29,48 @@ export class DetalleTutorPage implements OnInit {
   toastController = inject(ToastController);
   route = inject(ActivatedRoute);
   emailServ = inject(EmailService);
+  firestore = inject(AngularFirestore);
 
-
+  form = new FormGroup({
+    nombre: new FormControl('', Validators.required),
+    especie: new FormControl('', Validators.required),
+    raza: new FormControl(''),
+    sexo: new FormControl('', Validators.required), // boleaano
+    esterilizado: new FormControl('', Validators.required), //booleano
+  });
+  
+  ionViewWillEnter() {
+    this.cargarDatosTutor();
+  }
+ 
 
   ngOnInit() {
-    const tutorId = this.route.snapshot.paramMap.get('id');
-    if (tutorId) {
-      this.fireBS.obtenerTutorPorId(tutorId).then(data => {
+    this.tutorId = this.route.snapshot.paramMap.get('id');
+    if (this.tutorId) {
+      this.fireBS.obtenerTutorPorId(this.tutorId).then(data => {
         this.tutor = data;
         console.log('Datos del tutor:', this.tutor);
+
+    
+        this.mascotas = this.tutor.mascotas || [];
       }).catch(error => {
         console.error('Error al obtener el tutor:', error);
       });
     }
   }
+  async cargarDatosTutor() {
+    if (this.tutorId) {
+      const tutorRef = this.firestore.doc(`users/${(await this.auth.currentUser)?.uid}/tutores/${this.tutorId}`);
+      const tutorDoc = await tutorRef.get().toPromise();
+      if (tutorDoc.exists) {
+        const tutorData = tutorDoc.data() as Tutor;  // Cast de tutorData a tipo Tutor
+        this.tutor = tutorData;
+        this.mascotas = tutorData.mascotas || [];  // Ahora puedes acceder a 'mascotas' sin error
+      }
+    }
+  }
+  
+
 
   // Función para obtener los datos del tutor
   async obtenerTutor(tutorId: string) {
@@ -50,19 +83,79 @@ export class DetalleTutorPage implements OnInit {
     }
   }
   
+// 
 
+abrirFormularioMascota() {
+  this.formularioMascotaAbierto = true;
+}
+cerrarFormularioMascota() {
+  this.formularioMascotaAbierto = false;
+}
+//----------------------
+async nuevaMascota() {
+  if (this.form.valid && this.tutor && this.tutorId) {
+    const nuevaMascota: Mascota = {
+      estado: 'activo', // Estado de la mascota
+      nombre: this.form.value.nombre,
+      especie: this.form.value.especie,
+      raza: this.form.value.raza,
+      pelaje: '',
+      color: '', 
+      sexo: this.form.value.sexo,
+      esterilizado: this.form.value.esterilizado,
+      fechanacimiento: new Date(), 
+      chip: '', 
+      gsangineo: '', 
+      caracter: '', 
+      obs: '', 
+    };
 
+    const user = await this.auth.currentUser;
+    const tutorPath = `users/${user?.uid}/tutores/${this.tutorId}`;  // Ruta del tutor
 
-  
+    try {
+      // Primero obtenemos la referencia del tutor
+      const tutorRef = this.firestore.doc<Tutor>(tutorPath);  // Usamos doc() para obtener la referencia del documento del tutor
+      const tutorDoc = await tutorRef.get().toPromise(); // Ahora puedes usar .get() en el DocumentReference
 
-  cargarDatosTutor() {
+      if (tutorDoc.exists) {
+        const tutorData = tutorDoc.data() as Tutor;  // Convertimos los datos a tipo Tutor
+        const mascotas = tutorData.mascotas || [];  // Aseguramos que siempre sea un array
 
+        // Agregamos la nueva mascota al array
+        mascotas.push(nuevaMascota);
+        // Actualizamos el documento del tutor con el array de mascotas actualizado
+        await tutorRef.update({ mascotas });
+
+        // Actualizamos la propiedad localmente
+        if (this.tutor) {
+          this.tutor.mascotas = mascotas;  // Actualizamos las mascotas del tutor
+        }
+
+        this.cerrarFormularioMascota();
+        this.presentToast('Mascota agregada correctamente', 'success');
+      } else {
+        console.error('Tutor no encontrado');
+        this.presentToast('Tutor no encontrado', 'danger');
+      }
+    } catch (error) {
+      console.error('Error al agregar la mascota:', error);
+      this.presentToast('Error al agregar la mascota', 'danger');
+    }
   }
+}
 
-  actualizarDatosTutor() {
 
-  }
+//--------------------
 
+async presentToast(message: string, color: string) {
+  const toast = await this.toastController.create({
+    message,
+    duration: 2000,
+    color,
+  });
+  toast.present();
+}
 
   async enviarCorreoTutor() {
     const subject = '¡Registro exitoso en PetRecord!';

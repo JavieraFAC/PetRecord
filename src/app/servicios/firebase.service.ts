@@ -165,6 +165,21 @@ async obtenerTutorPorId(tutorId: string) {
 }
 
 
+ // Método para agregar una mascota
+ agregarMascota(path: string, mascota: any) {
+  const ref = this.firestore.collection(path); // Accede a la colección en Firestore
+
+  return ref.add(mascota); 
+}
+
+// Método para obtener los datos de una mascota
+obtenerMascotas(path: string) {
+  return this.firestore.collection(path).snapshotChanges(); // Obtiene los cambios en la colección
+}
+
+
+
+
 //------------------------------------------------------------------------------
 // almacenamiento de imagen firebase (no se puedo utilizar)
 

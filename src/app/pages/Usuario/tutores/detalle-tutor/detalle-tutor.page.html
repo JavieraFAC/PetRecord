@@ -31,21 +31,98 @@
   <!-----PERFIL----->
 
 <!-------MASCOTAS-------->
-<ion-card class="mascotas">
+<ion-card class="detalletutor">
   <ion-card-content>
-          <h2> Mascotas</h2>
-          <h3>Nombre: </h3>
-          <p><ion-icon name="especie"></ion-icon>Especie </p>
-          <p><ion-icon name="estado"></ion-icon>Estado </p>
+    <h2>Mascotas</h2>
+    <ion-list>
+      <ion-item-sliding *ngFor="let mascota of mascotas">
+        <ion-item>
+          <ion-label>
+            <h3>{{ mascota.nombre }}</h3>
+            <p>Especie: {{ mascota.especie }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-item-sliding>
+    </ion-list>
   </ion-card-content>
 </ion-card>
-<!-------MASCOTAS-------->
+<!------- AGREGAR MASCOTA-------->
 
-<ion-button class="boton-editar" (click)="enviarCorreoTutor()">
+<!-- Botón para abrir formulario de agregar mascota -->
+<ion-button class="boton-editar" (click)="abrirFormularioMascota()">Agregar nueva mascota</ion-button>
+<!-- Botón para abrir formulario de agregar mascota -->
+
+
+<!-- Formulario de Mascota (mostrado cuando formularioMascotaAbierto es true) -->
+<div *ngIf="formularioMascotaAbierto"   class="formulario-mascota">
+
+  <ion-card class="agregar-mascota">
+    <ion-card-header>
+      <ion-button fill="clear" class="cerrar-formulario" (click)="cerrarFormularioMascota()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+      <ion-card-title>
+        <h2>Agregar Mascota</h2>
+      </ion-card-title>
+    </ion-card-header>
+
+
+      <ion-card-content>
+        <form [formGroup]="form" (ngSubmit)="nuevaMascota()">
+        <!-- Nombre -->
+        <ion-item>
+          <ion-label position="floating">Nombre</ion-label>
+          <ion-input formControlName="nombre" required></ion-input>
+        </ion-item>
+
+        <!-- Especie -->
+        <ion-item>
+          <ion-label position="floating">Especie</ion-label>
+          <ion-input formControlName="especie" required></ion-input>
+        </ion-item>
+
+        <!-- Raza -->
+        <ion-item>
+          <ion-label position="floating">Raza</ion-label>
+          <ion-input formControlName="raza"></ion-input>
+        </ion-item>
+
+        <!-- Sexo (H/M) -->
+        <ion-item>
+          <ion-label position="floating">Sexo</ion-label>
+          <ion-select formControlName="sexo" placeholder="Seleccione">
+            <ion-select-option value="H">Hembra</ion-select-option>
+            <ion-select-option value="M">Macho</ion-select-option>
+          </ion-select>
+        </ion-item>
+  <!-- Esterilizado (Sí/No) -->
+  <ion-item>
+    <ion-label position="floating">¿Está esterilizado?</ion-label>
+    <ion-select formControlName="esterilizado" placeholder="Seleccione">
+      <ion-select-option value="Sí">Sí</ion-select-option>
+      <ion-select-option value="No">No</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <!-- Botón para enviar el formulario -->
+  <ion-button class="boton-editar" [disabled]="!form.valid" (click)="nuevaMascota()">Guardar Mascota</ion-button>
+</form>
+</ion-card-content>
+</ion-card>
+
+</div>
+
+
+
+
+
+<!------- AGREGAR MASCOTA-------->
+<!--------ENVIAR CORREO-->
+
+<ion-button class="boton-editar2" (click)="enviarCorreoTutor()">
   Enviar Correo al Tutor
 </ion-button>
 
 <!------------------------------------->
 
-<img src="" alt="">
 </ion-content>
